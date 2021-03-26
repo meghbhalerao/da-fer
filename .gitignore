@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+
+# Custom additons to gitigore
+data/
+model_weights
