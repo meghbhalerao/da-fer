@@ -132,4 +132,7 @@ dmypy.json
 
 # Custom additons to gitigore
 data/
-model_weights
+model_weights/
+output_images/
+images.zip
+*zip
