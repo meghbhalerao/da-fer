@@ -131,8 +131,9 @@ dmypy.json
 
 
 # Custom additons to gitigore
-data/
-model_weights/
-output_images/
-images.zip
+detection/data/
+detection/model_weights/
+detection/output_images/
+detection/images.zip
 *zip
+train_scripts/*pkl
