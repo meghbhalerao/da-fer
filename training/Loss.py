@@ -24,10 +24,25 @@ def DANN(features, ad_net):
     batch_size = ad_out.size(0) // 2
     dc_target = torch.from_numpy(np.array([[1]] * batch_size + [[0]] * batch_size)).float()
     
-    if dc_target.is_cuda:
+    if not dc_target.is_cuda:
         dc_target = dc_target.cuda()
 
     return nn.BCELoss()(ad_out, dc_target)
+def MME(features, coeff = 1):
+    '''
+    Paper Link : https://arxiv.org/pdf/1904.06487.pdf
+    Github Link : https://github.com/VisionLearningGroup/SSDA_MME
+    '''
+    ad_out = adentropy(features)
+    ad_out.register_hook(grl_hook(coeff))
+    return ad_out
+
+
+def adentropy(feat, lamda=0.1):
+    feat = F.softmax(feat)
+    loss_adent = - lamda * torch.mean(torch.sum(feat * (torch.log(feat + 1e-5)), 1))
+    return loss_adent
+
 
 def CDAN(input_list, ad_net, entropy=None, coeff=None, random_layer=None):
 
@@ -92,3 +107,37 @@ def SAFN(features, weight_L2norm, deltaRadius):
     assert radius.requires_grad == False, 'radius\'s requires_grad should be False'
     
     return weight_L2norm * ((features.norm(p=2, dim=1) - (radius+deltaRadius)) ** 2).mean()
+
+def do_fixmatch(f,data_target,label_target,landmark_target,model,thresh,criterion_pseudo,use_uncertainty = False):
+    im_data_tu_weak_aug, im_data_tu_strong_aug = data_target[2].cuda(), data_target[1].cuda()
+    # Getting predictions of weak and strong augmented unlabled examples
+    feature_strong, output_strong, loc_output_strong = model(im_data_tu_strong_aug,landmark_target,False,'Target')
+    with torch.no_grad():
+        feature_weak, output_weak, loc_output_weak = model(im_data_tu_weak_aug,landmark_target,False,'Target')
+    prob_weak_aug = F.softmax(output_weak,dim=1)
+    mask_loss = prob_weak_aug.max(1)[0]>thresh
+    pseudo_labels = output_weak.max(axis=1)[1]
+    #try:
+    if not use_uncertainty:
+        loss_pseudo_unl = torch.mean(mask_loss.int() * criterion_pseudo(output_strong,pseudo_labels))
+        mask_loss = mask_loss.int()
+    elif use_uncertainty:
+        loss_pseudo_unl = torch.mean(prob_weak_aug * mask_loss.int() * criterion_pseudo(output_strong,pseudo_labels))
+    #print("Mask Loss is: ", mask_loss)
+    #print("Pseudo labels are: ", pseudo_labels)
+    #print("Actual target example Labels are: ", label_target)
+
+    #print((pseudo_labels==label_target).int())
+
+    a = (mask_loss * (pseudo_labels==label_target).int()).sum().data.item()
+    #b = torch.ones_like(mask_loss * pseudo_labels).int().sum(≈).data.item()
+    #print(torch.ones_like(mask_loss * pseudo_labels))
+    b = mask_loss.int().sum().data.item()
+    #loss_pseudo_unl.backward(retain_graph=True)
+    #except:
+    #pass
+    if f:
+        pass
+        #sys.exit("This is a test run, exiting!")
+    return a, b, pseudo_labels, mask_loss, loss_pseudo_unl
+
