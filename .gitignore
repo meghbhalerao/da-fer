@@ -137,3 +137,5 @@ detection/output_images/
 detection/images.zip
 *zip
 train_scripts/*pkl
+__pycache__/
+
