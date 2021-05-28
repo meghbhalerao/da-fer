@@ -139,3 +139,6 @@ detection/images.zip
 train_scripts/*pkl
 __pycache__/
 Dataset/
+*.pkl
+train_scripts/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl
+train_scripts/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+/
