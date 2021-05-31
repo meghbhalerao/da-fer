@@ -140,5 +140,6 @@ train_scripts/*pkl
 __pycache__/
 Dataset/
 *.pkl
-train_scripts/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl
-train_scripts/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+/
+training/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl
+training/ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+/
+
