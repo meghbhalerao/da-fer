@@ -181,9 +181,7 @@ class Backbone(nn.Module):
         self.GAP = nn.AdaptiveAvgPool2d((1,1))
 
         #self.GCN = GCN(64, 128, 64)
-        self.GCN = GCNwithIntraAndInterMatrix(64, 128, 64, 
-                                              useIntraGCN=useIntraGCN, useInterGCN=useInterGCN, 
-                                              useRandomMatrix=useRandomMatrix, useAllOneMatrix=useAllOneMatrix)
+        self.GCN = GCNwithIntraAndInterMatrix(64, 128, 64, useIntraGCN=useIntraGCN, useInterGCN=useInterGCN, useRandomMatrix=useRandomMatrix, useAllOneMatrix=useAllOneMatrix)
 
         self.SourceMean = (CountMeanAndCovOfFeature(64+320) if useCov else CountMeanOfFeature(64+320)) if not useCluster else CountMeanOfFeatureInCluster(64+320)
         self.TargetMean = (CountMeanAndCovOfFeature(64+320) if useCov else CountMeanOfFeature(64+320)) if not useCluster else CountMeanOfFeatureInCluster(64+320)
@@ -311,19 +309,7 @@ class Backbone(nn.Module):
         return 64*6
 
     def get_parameters(self):
-        parameter_list = [  {"params":self.input_layer.parameters(), "lr_mult":1, 'decay_mult':2}, \
-                            {"params":self.layer1.parameters(), "lr_mult":1, 'decay_mult':2}, \
-                            {"params":self.layer2.parameters(), "lr_mult":1, 'decay_mult':2}, \
-                            {"params":self.layer3.parameters(), "lr_mult":1, 'decay_mult':2}, \
-                            {"params":self.layer4.parameters(), "lr_mult":1, 'decay_mult':2}, \
-                            {"params":self.output_layer.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.fc.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.loc_fc.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.Crop_Net.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.GCN.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.SourceBN.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            {"params":self.TargetBN.parameters(), "lr_mult":10, 'decay_mult':2}, \
-                            ]
+        parameter_list = [  {"params":self.input_layer.parameters(), "lr_mult":1, 'decay_mult':2}, {"params":self.layer1.parameters(), "lr_mult":1, 'decay_mult':2}, {"params":self.layer2.parameters(), "lr_mult":1, 'decay_mult':2}, {"params":self.layer3.parameters(), "lr_mult":1, 'decay_mult':2}, {"params":self.layer4.parameters(), "lr_mult":1, 'decay_mult':2}, {"params":self.output_layer.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.fc.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.loc_fc.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.Crop_Net.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.GCN.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.SourceBN.parameters(), "lr_mult":10, 'decay_mult':2}, {"params":self.TargetBN.parameters(), "lr_mult":10, 'decay_mult':2}]
         return parameter_list
 
     def crop_featureMap(self, featureMap, locations):

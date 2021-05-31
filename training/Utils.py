@@ -179,7 +179,6 @@ def BulidAdversarialNetwork(args, model_output_num, class_num=7):
     if args.randomLayer:
         random_layer = RandomLayer([model_output_num, class_num], 1024)
         ad_net = AdversarialNetwork(1024, 512)
-
         random_layer.cuda()
         
     else:

@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 
-from Loss import Entropy, DANN, CDAN, HAFN, SAFN
+from Loss import Entropy, DANN, CDAN, HAFN, SAFN, MME
 from Utils import *
 
 parser = argparse.ArgumentParser(description='Domain adaptation for Expression Classification')
@@ -24,7 +24,7 @@ parser.add_argument('--Resume_Model', type=str, help='Resume_Model', default='No
 parser.add_argument('--GPU_ID', default='0', type=str, help='CUDA_VISIBLE_DEVICES')
 
 parser.add_argument('--useDAN', type=str2bool, default=False, help='whether to use DAN Loss')
-parser.add_argument('--methodOfDAN', type=str, default='CDAN-E', choices=['CDAN', 'CDAN-E', 'DANN'])
+parser.add_argument('--methodOfDAN', type=str, default='CDAN-E', choices=['CDAN', 'CDAN-E', 'DANN','MME'])
 
 parser.add_argument('--useAFN', type=str2bool, default=False, help='whether to use AFN Loss')
 parser.add_argument('--methodOfAFN', type=str, default='SAFN', choices=['HAFN', 'SAFN'])
@@ -165,7 +165,9 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 else:
                     op_out = torch.bmm(softmax_output.unsqueeze(2), feature.unsqueeze(1))
                     adnet_output = ad_net(op_out.view(-1, softmax_output.size(1) * feature.size(1)))
-            elif args.methodOfDAN=='DANN' or args.methodofDAN=='MME': 
+            elif args.methodOfDAN=='DANN' or args.methodOfDAN=='MME': 
+                print(ad_net)
+                print(feature.shape)
                 adnet_output = ad_net(feature)
 
             adnet_output = adnet_output.cpu().data.numpy()
