@@ -313,7 +313,6 @@ class Backbone(nn.Module):
         return parameter_list
 
     def crop_featureMap(self, featureMap, locations):
-
         batch_size = featureMap.size(0)
         map_ch = featureMap.size(1)
         map_len = featureMap.size(2)

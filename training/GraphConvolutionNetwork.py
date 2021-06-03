@@ -61,7 +61,7 @@ class GraphConvolution(nn.Module):
         # Adj = block.block_diag([adj.cpu() for i in range(batchSize)])
         # if input.is_cuda:
         #     Adj = Adj.cuda()
-        # output = torch.mm(Adj, support.view(batchSize*numOfNode, -1))
+        # output = torch.mm(Adj, supprt.view(batchSize*numOfNode, -1))
         # output = output.view(batchSize, numOfNode, -1)
 
 class GCN(nn.Module):

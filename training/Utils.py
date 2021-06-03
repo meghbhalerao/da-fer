@@ -139,28 +139,28 @@ def Compute_Accuracy(args, pred, target, acc, prec, recall):
 def BulidModel(args):
     """Bulid Model."""
 
-    if args.useLocalFeature:
-        if args.Backbone == 'ResNet18':
-            model = IR(18, args.useIntraGCN, args.useInterGCN, args.useRandomMatrix, args.useAllOneMatrix, args.useCov, args.useCluster)
-        elif args.Backbone == 'ResNet50':
-            model = IR(50, args.useIntraGCN, args.useInterGCN, args.useRandomMatrix, args.useAllOneMatrix, args.useCov, args.useCluster)
-        elif args.Backbone == 'VGGNet':
-            model = VGG(args.useIntraGCN, args.useInterGCN, args.useRandomMatrix, args.useAllOneMatrix, args.useCov, args.useCluster)
-        elif args.Backbone == 'MobileNet':
-            model = MobileNetV2(args.useIntraGCN, args.useInterGCN, args.useRandomMatrix, args.useAllOneMatrix, args.useCov, args.useCluster)
+    if args.local_feat:
+        if args.net == 'ResNet18':
+            model = IR(18, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+        elif args.net == 'ResNet50':
+            model = IR(50, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+        elif args.net == 'VGGNet':
+            model = VGG(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+        elif args.net == 'MobileNet':
+            model = MobileNetV2(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
     else:
-        if args.Backbone == 'ResNet18':
+        if args.net == 'ResNet18':
             model = IR_onlyGlobal(18)
-        elif args.Backbone == 'ResNet50':
+        elif args.net == 'ResNet50':
             model = IR_onlyGlobal(50)
-        elif args.Backbone == 'VGGNet':
+        elif args.net == 'VGGNet':
             model = VGG_onlyGlobal()
-        elif args.Backbone == 'MobileNet':
+        elif args.net == 'MobileNet':
             model = MobileNetV2_onlyGlobal()
 
-    if args.Resume_Model != 'None':
-        print('Resume Model: {}'.format(args.Resume_Model))
-        checkpoint = torch.load(args.Resume_Model, map_location='cpu')
+    if args.pretrained != 'None':
+        print('Resume Model: {}'.format(args.pretrained))
+        checkpoint = torch.load(args.pretrained, map_location='cpu')
 
         model.load_state_dict(checkpoint, strict=True)
     else:
@@ -176,14 +176,14 @@ def BulidModel(args):
 def BulidAdversarialNetwork(args, model_output_num, class_num=7):
     """Bulid Adversarial Network."""
 
-    if args.randomLayer:
+    if args.rand_layer:
         random_layer = RandomLayer([model_output_num, class_num], 1024)
         ad_net = AdversarialNetwork(1024, 512)
         random_layer.cuda()
         
     else:
         random_layer = None
-        if args.methodOfDAN=='DANN':
+        if args.dan_method=='DANN' or args.dan_method=='MME':
             ad_net = AdversarialNetwork(model_output_num, 128)
         else:
             ad_net = AdversarialNetwork(model_output_num * class_num, 512)
@@ -200,7 +200,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
 
     # Set Transform
     trans = transforms.Compose([ 
-            transforms.Resize((args.faceScale, args.faceScale)),
+            transforms.Resize((args.face_scale, args.face_scale)),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),
             ])
@@ -220,26 +220,26 @@ def BulidDataloader(args, flag1='train', flag2='source'):
     data_imgs, data_labels, data_bboxs, data_landmarks = [], [], [], []
     if flag1 == 'train':
         if flag2 == 'source':
-            if args.sourceDataset=='RAF': # RAF Train Set
-                list_patition_label = pd.read_csv(dataPath_prefix+'/RAF/basic/EmoLabel/list_patition_label.txt', header=None, delim_whitespace=True)
+            if args.source=='RAF': # RAF Train Set
+                list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/list_patition_label.txt'%(args.source), header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
                 for index in range(list_patition_label.shape[0]):
                     if list_patition_label[index,0][:5] == "train":
-                        if not os.path.exists(dataPath_prefix+'/RAF/basic/Annotation/boundingbox/'+list_patition_label[index,0][:-4] + '_boundingbox' + '.txt'):
+                        if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.source)+list_patition_label[index,0][:-4] + '_boundingbox' + '.txt'):
                             continue
-                        if not os.path.exists(dataPath_prefix+'/RAF/basic/Annotation/Landmarks_5/'+list_patition_label[index,0][:-4]+'.txt'):
+                        if not os.path.exists(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-4]+'.txt'):
                             continue
                         
-                        bbox = np.loadtxt(dataPath_prefix+'/RAF/basic/Annotation/boundingbox/'+list_patition_label[index,0][:-4]+'_boundingbox.txt').astype(np.int)
-                        landmark = np.loadtxt(dataPath_prefix+'/RAF/basic/Annotation/Landmarks_5/'+list_patition_label[index,0][:-3]+'txt').astype(np.int)
+                        bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.source)+list_patition_label[index,0][:-4]+'_boundingbox.txt').astype(np.int)
+                        landmark = np.loadtxt(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
 
 
-                        data_imgs.append(dataPath_prefix+'/RAF/basic/Image/original/'+list_patition_label[index,0])
+                        data_imgs.append(dataPath_prefix+'/%s/Images/'%(args.source)+list_patition_label[index,0])
                         data_labels.append(list_patition_label[index,1]-1)
                         data_bboxs.append(bbox)
                         data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='AFED': # AFED Train Set
+            elif args.source=='AFED': # AFED Train Set
                 AsiantoLabel = { 3:0, 6:1, 5:2, 1:3, 4:4, 9:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Asian_Facial_Expression/AsianMovie_0725_0730/list/train_list.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -256,7 +256,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)  
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='MMI': # MMI Dataset
+            elif args.source=='MMI': # MMI Dataset
                 
                 MMItoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/MMI/list/list.txt', header=None, delim_whitespace=True)
@@ -277,9 +277,9 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            if args.useMultiDatasets=='True':
+            if args.multiple_data=='True':
 
-                if args.targetDataset!='CK+': # CK+ Dataset
+                if args.target!='CK+': # CK+ Dataset
 
                     for index, expression in enumerate(['Surprised','Fear','Disgust','Happy','Sad','Anger','Neutral']):
                         Dirs = os.listdir(os.path.join(dataPath_prefix+'/CK+_Emotion/Train/CK+_Train_crop',expression))
@@ -313,7 +313,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                             data_bboxs.append((0,0,ori_img_w,ori_img_h))
                             data_landmarks.append(landmark)
 
-                if args.targetDataset!='JAFFE': # JAFFE Dataset
+                if args.target!='JAFFE': # JAFFE Dataset
 
                     list_patition_label = pd.read_csv(dataPath_prefix+'/JAFFE/list/list_putao.txt', header=None, delim_whitespace=True)
                     list_patition_label = np.array(list_patition_label)
@@ -333,7 +333,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append(bbox) 
                         data_landmarks.append(landmark)
 
-                if args.targetDataset!='MMI': # MMI Dataset
+                if args.target!='MMI': # MMI Dataset
 
                     MMItoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5 }
                     list_patition_label = pd.read_csv(dataPath_prefix+'/MMI/list/list.txt', header=None, delim_whitespace=True)
@@ -354,7 +354,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append(bbox) 
                         data_landmarks.append(landmark)
 
-                if args.targetDataset!='Oulu-CASIA': # Oulu-CASIA Dataset
+                if args.target!='Oulu-CASIA': # Oulu-CASIA Dataset
 
                     list_patition_label = pd.read_csv(dataPath_prefix+'/Oulu-CASIA/list/list.txt', header=None, delim_whitespace=True)
                     list_patition_label = np.array(list_patition_label)
@@ -375,7 +375,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_landmarks.append(landmark)
 
         elif flag2 == 'target':
-            if args.targetDataset=='CK+': # CK+ Train Set
+            if args.target=='CK+': # CK+ Train Set
                 for index, expression in enumerate(['Surprised','Fear','Disgust','Happy','Sad','Anger','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/CK+_Emotion/Train/CK+_Train_crop',expression))
                     for imgFile in Dirs:
@@ -392,7 +392,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append((0,0,ori_img_w,ori_img_h))
                         data_landmarks.append(landmark)
 
-            elif args.targetDataset=='JAFFE': # JAFFE Dataset
+            elif args.target=='JAFFE': # JAFFE Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/JAFFE/list/list_putao.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -412,7 +412,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='MMI': # MMI Dataset
+            elif args.target=='MMI': # MMI Dataset
 
                 MMItoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/MMI/list/list.txt', header=None, delim_whitespace=True)
@@ -433,7 +433,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='Oulu-CASIA': # Oulu-CASIA Dataset
+            elif args.target=='Oulu-CASIA': # Oulu-CASIA Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Oulu-CASIA/list/list.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -453,7 +453,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h)) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='SFEW': # SFEW Train Set
+            elif args.target=='SFEW': # SFEW Train Set
 
                 for index, expression in enumerate(['Surprise','Fear','Disgust','Happy','Sad','Angry','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/SFEW/Train/Annotations/Bboxs/',expression))
@@ -477,7 +477,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append(bboxs)
                         data_landmarks.append(landmark)
 
-            elif args.targetDataset=='FER2013': # FER2013 Train Set
+            elif args.target=='FER2013': # FER2013 Train Set
                 
                 FER2013toLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/FER2013/list/train_list.txt', header=None, delim_whitespace=True)
@@ -499,7 +499,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h))
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='ExpW': # ExpW Train Set
+            elif args.target=='ExpW': # ExpW Train Set
                 
                 ExpWtoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/ExpW/list/Landmarks_5/train_list_5landmarks.txt', header=None, delim_whitespace=True)
@@ -515,7 +515,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
             
-            elif args.targetDataset=='AFED': # AFED Train Set
+            elif args.target=='AFED': # AFED Train Set
 
                 AsiantoLabel = { 3:0, 6:1, 5:2, 1:3, 4:4, 9:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Asian_Facial_Expression/AsianMovie_0725_0730/list/train_list.txt', header=None, delim_whitespace=True)
@@ -534,7 +534,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)  
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='WFED': # WFED Train Set
+            elif args.target=='WFED': # WFED Train Set
 
                 WesternToLabel = { 2:0, 5:1, 4:2, 1:3, 3:4, 6:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Western_Films_Expression_Datasets/list/train_random.txt', header=None, delim_whitespace=True)
@@ -560,7 +560,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='RAF': # RAF Train Set
+            elif args.target=='RAF': # RAF Train Set
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/RAF/basic/EmoLabel/list_patition_label.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -580,10 +580,31 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_labels.append(list_patition_label[index,1]-1)
                         data_bboxs.append(bbox)
                         data_landmarks.append(landmark)
-           
+
+            elif args.target=='AISIN': # RAF Train Set
+
+                list_patition_label = pd.read_csv(dataPath_prefix+'/AISIN/lists/list_partition_label.txt', header=None, delim_whitespace=True)
+                list_patition_label = np.array(list_patition_label)
+
+                for index in range(list_patition_label.shape[0]):
+                    if list_patition_label[index,0][:5] == "train":
+
+                        if not os.path.exists(dataPath_prefix+'/AISIN/boundingbox/'+list_patition_label[index,0][:-3]+'txt'):
+                            continue
+                        if not os.path.exists(dataPath_prefix+'/AISIN/landmarks_5/'+list_patition_label[index,0][:-3]+'txt'):
+                            continue
+
+                        bbox = np.loadtxt(dataPath_prefix+'/AISIN/boundingbox/'+list_patition_label[index,0][:-3]+'txt').astype(np.int)
+                        landmark = np.loadtxt(dataPath_prefix+'/AISIN/landmarks_5/'+list_patition_label[index,0][:-3]+'txt').astype(np.int)
+
+                        data_imgs.append(dataPath_prefix+'/AISIN/images'+list_patition_label[index,0])
+                        data_labels.append(list_patition_label[index,1]-1)
+                        data_bboxs.append(bbox)
+                        data_landmarks.append(landmark)
+                        
     elif flag1 == 'test':
         if flag2 =='source':
-            if args.sourceDataset=='CK+': # CK+ Val Set
+            if args.source=='CK+': # CK+ Val Set
                 for index, expression in enumerate(['Surprised','Fear','Disgust','Happy','Sad','Anger','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/CK+_Emotion/Val/CK+_Val_crop',expression))
                     for imgFile in Dirs:
@@ -600,7 +621,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append((0,0,ori_img_w,ori_img_h))
                         data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='JAFFE': # JAFFE Dataset
+            elif args.source=='JAFFE': # JAFFE Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/JAFFE/list/list_putao.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -620,7 +641,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='MMI': # MMI Dataset
+            elif args.source=='MMI': # MMI Dataset
 
                 MMItoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/MMI/list/list.txt', header=None, delim_whitespace=True)
@@ -641,7 +662,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='Oulu-CASIA': # Oulu-CASIA Dataset
+            elif args.source=='Oulu-CASIA': # Oulu-CASIA Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Oulu-CASIA/list/list.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -661,7 +682,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h)) 
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='SFEW': # SFEW 2.0 Val Set
+            elif args.source=='SFEW': # SFEW 2.0 Val Set
 
                 for index, expression in enumerate(['Surprise','Fear','Disgust','Happy','Sad','Angry','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/SFEW/Val/Annotations/Bboxs/',expression))
@@ -685,7 +706,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append(bboxs)
                         data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='FER2013': # FER2013 Val Set
+            elif args.source=='FER2013': # FER2013 Val Set
 
                 FER2013toLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/FER2013/list/val_list.txt', header=None, delim_whitespace=True)
@@ -707,7 +728,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h))
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='ExpW': # ExpW Val Set
+            elif args.source=='ExpW': # ExpW Val Set
 
                 ExpWtoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/ExpW/list/Landmarks_5/val_list_5landmarks.txt', header=None, delim_whitespace=True)
@@ -723,7 +744,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
            
-            elif args.sourceDataset=='AFED': # AFED Val Set
+            elif args.source=='AFED': # AFED Val Set
 
                 AsiantoLabel = { 3:0, 6:1, 5:2, 1:3, 4:4, 9:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Asian_Facial_Expression/AsianMovie_0725_0730/list/val_list.txt', header=None, delim_whitespace=True)
@@ -742,7 +763,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='WFED': # WFED Val Set
+            elif args.source=='WFED': # WFED Val Set
 
                 WesternToLabel = { 2:0, 5:1, 4:2, 1:3, 3:4, 6:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Western_Films_Expression_Datasets/list/val_random.txt', header=None, delim_whitespace=True)
@@ -768,7 +789,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            elif args.sourceDataset=='RAF': # RAF Test Set
+            elif args.source=='RAF': # RAF Test Set
                 list_patition_label = pd.read_csv(dataPath_prefix+'/RAF/basic/EmoLabel/list_patition_label.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
                 
@@ -787,7 +808,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_landmarks.append(landmark)
 
         elif flag2=='target':
-            if args.targetDataset=='CK+': # CK+ Val Set
+            if args.target=='CK+': # CK+ Val Set
 
                 for index, expression in enumerate(['Surprised','Fear','Disgust','Happy','Sad','Anger','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/CK+_Emotion/Val/CK+_Val_crop',expression))
@@ -805,7 +826,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append((0,0,ori_img_w,ori_img_h))
                         data_landmarks.append(landmark)
 
-            elif args.targetDataset=='JAFFE': # JAFFE Dataset
+            elif args.target=='JAFFE': # JAFFE Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/JAFFE/list/list_putao.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -825,7 +846,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='MMI': # MMI Dataset
+            elif args.target=='MMI': # MMI Dataset
 
                 MMItoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/MMI/list/list.txt', header=None, delim_whitespace=True)
@@ -846,7 +867,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='Oulu-CASIA': # Oulu-CASIA Dataset
+            elif args.target=='Oulu-CASIA': # Oulu-CASIA Dataset
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Oulu-CASIA/list/list.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -866,7 +887,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h)) 
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='SFEW': # SFEW 2.0 Val Set
+            elif args.target=='SFEW': # SFEW 2.0 Val Set
 
                 for index, expression in enumerate(['Surprise','Fear','Disgust','Happy','Sad','Angry','Neutral']):
                     Dirs = os.listdir(os.path.join(dataPath_prefix+'/SFEW/Val/Annotations/Bboxs/',expression))
@@ -890,7 +911,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         data_bboxs.append(bboxs)
                         data_landmarks.append(landmark)
 
-            elif args.targetDataset=='FER2013': # FER2013 Val Set
+            elif args.target=='FER2013': # FER2013 Val Set
 
                 FER2013toLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/FER2013/list/val_list.txt', header=None, delim_whitespace=True)
@@ -912,7 +933,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append((0,0,ori_img_w,ori_img_h))
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='ExpW': # ExpW Val Set
+            elif args.target=='ExpW': # ExpW Val Set
 
                 ExpWtoLabel = { 5:0, 2:1, 1:2, 3:3, 4:4, 0:5, 6:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/ExpW/list/Landmarks_5/val_list_5landmarks.txt', header=None, delim_whitespace=True)
@@ -928,7 +949,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
            
-            elif args.targetDataset=='AFED': # AFED Val Set
+            elif args.target=='AFED': # AFED Val Set
 
                 AsiantoLabel = { 3:0, 6:1, 5:2, 1:3, 4:4, 9:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Asian_Facial_Expression/AsianMovie_0725_0730/list/val_list.txt', header=None, delim_whitespace=True)
@@ -947,7 +968,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='WFED': # WFED Val Set
+            elif args.target=='WFED': # WFED Val Set
 
                 WesternToLabel = { 2:0, 5:1, 4:2, 1:3, 3:4, 6:5, 0:6 }
                 list_patition_label = pd.read_csv(dataPath_prefix+'/Western_Films_Expression_Datasets/list/val_random.txt', header=None, delim_whitespace=True)
@@ -973,7 +994,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
-            elif args.targetDataset=='RAF': # RAF Test Set
+            elif args.target=='RAF': # RAF Test Set
 
                 list_patition_label = pd.read_csv(dataPath_prefix+'/RAF/basic/EmoLabel/list_patition_label.txt', header=None, delim_whitespace=True)
                 list_patition_label = np.array(list_patition_label)
@@ -1004,9 +1025,9 @@ def BulidDataloader(args, flag1='train', flag2='source'):
 
     # DataLoader
     if flag1=='train':
-        data_loader = data.DataLoader(dataset=data_set, batch_size=args.train_batch_size, shuffle=True, num_workers=8, drop_last=True)
+        data_loader = data.DataLoader(dataset=data_set, batch_size=args.train_batch, shuffle=True, num_workers=8, drop_last=True)
     elif flag1=='test':
-        data_loader = data.DataLoader(dataset=data_set, batch_size=args.test_batch_size, shuffle=False, num_workers=8, drop_last=False)
+        data_loader = data.DataLoader(dataset=data_set, batch_size=args.test_batch, shuffle=False, num_workers=8, drop_last=False)
 
     return data_loader
 

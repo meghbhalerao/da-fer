@@ -75,7 +75,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
     loss, global_cls_loss, local_cls_loss, afn_loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter()
 
     # Decay Learn Rate per Epoch
-    if args.Backbone in ['ResNet18', 'ResNet50']:
+    if args.net in ['ResNet18', 'ResNet50']:
         if epoch <= 20:
             args.lr = 1e-4
         elif epoch <= 40:
@@ -83,7 +83,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
         else:
             args.lr = 1e-6
 
-    elif args.Backbone == 'MobileNet':
+    elif args.net == 'MobileNet':
         if epoch <= 20:
             args.lr = 1e-3
         elif epoch <= 40:
@@ -93,7 +93,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
         else:
             args.lr = 1e-6
 
-    elif args.Backbone == 'VGGNet':
+    elif args.net == 'VGGNet':
         if epoch <= 30:
             args.lr = 1e-3
         elif epoch <= 60:
@@ -292,7 +292,7 @@ def main():
     torch.manual_seed(args.seed)
 
     # Experiment Information
-    print('log : %s' % args.Log_Name, 'out-pth %s' % args.OutputPath, 'net: %s' % args.Backbone, 'pretrained %s' % args.Resume_Model, 'dev %s' % args.GPU_ID )
+    print('log : %s' % args.Log_Name, 'out-pth %s' % args.OutputPath, 'net: %s' % args.net, 'pretrained %s' % args.Resume_Model, 'dev %s' % args.GPU_ID )
 
     print('Use {} * {} Image'.format(args.faceScale, args.faceScale), 'source %s' % args.sourceDataset, 'target %s' % args.targetDataset, 'train bs %d' % args.train_batch_size,'test bs %d' % args.test_batch_size)
 

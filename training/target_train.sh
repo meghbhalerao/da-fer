@@ -13,7 +13,7 @@ useDAN='True'
 methodOfDAN='MME'
 faceScale=112
 sourceDataset='RAF'
-targetDataset='CK+'
+targetDataset='AISIN'
 train_batch_size=32
 test_batch_size=32
 useMultiDatasets='False'
@@ -34,36 +34,36 @@ useCov='False'
 useCluster='False'
     
 OMP_NUM_THREADS=16 MKL_NUM_THREADS=16 CUDA_VISIBLE_DEVICES=${GPU_ID} python3 TransferToTargetDomain.py \
---Log_Name ${Log_Name} \
---OutputPath ${OutputPath} \
---Backbone ${Backbone} \
---Resume_Model ${Resume_Model} \
---GPU_ID ${GPU_ID} \
---useAFN ${useAFN} \
---methodOfAFN ${methodOfAFN} \
---radius ${radius} \
---deltaRadius ${deltaRadius} \
---weight_L2norm ${weight_L2norm} \
---useDAN ${useDAN} \
---methodOfDAN ${methodOfDAN} \
---faceScale ${faceScale} \
---sourceDataset ${sourceDataset} \
---targetDataset ${targetDataset} \
---train_batch_size ${train_batch_size} \
---test_batch_size ${test_batch_size} \
---useMultiDatasets ${useMultiDatasets} \
+--log ${Log_Name} \
+--out ${OutputPath} \
+--net ${Backbone} \
+--pretrained ${Resume_Model} \
+--dev ${GPU_ID} \
+--use_afn ${useAFN} \
+--afn_method ${methodOfAFN} \
+--r ${radius} \
+--dr ${deltaRadius} \
+--w_l2 ${weight_L2norm} \
+--use_dan ${useDAN} \
+--dan_method ${methodOfDAN} \
+--face_scale ${faceScale} \
+--source ${sourceDataset} \
+--target ${targetDataset} \
+--train_batch ${train_batch_size} \
+--test_batch ${test_batch_size} \
+--multiple_data ${useMultiDatasets} \
 --epochs ${epochs} \
 --lr ${lr} \
 --lr_ad ${lr_ad} \
 --momentum ${momentum} \
 --weight_decay ${weight_decay} \
 --isTest ${isTest} \
---showFeature ${showFeature} \
+--show_feat ${showFeature} \
 --class_num ${class_num} \
---useIntraGCN ${useIntraGCN} \
---useInterGCN ${useInterGCN} \
---useLocalFeature ${useLocalFeature} \
---useRandomMatrix ${useRandomMatrix} \
---useAllOneMatrix ${useAllOneMatrix} \
---useCov ${useCov} \
---useCluster ${useCluster}
+--intra_gcn ${useIntraGCN} \
+--inter_gcn ${useInterGCN} \
+--local_feat ${useLocalFeature} \
+--rand_mat ${useRandomMatrix} \
+--all1_mat ${useAllOneMatrix} \
+--use_cov ${useCov} \
+--use_cluster ${useCluster}
