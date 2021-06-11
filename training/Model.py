@@ -88,9 +88,7 @@ class CountMeanAndCovOfFeature(nn.Module):
     def getSample(self, input):
 
         if self.training:
-            result = torch.FloatTensor(np.random.multivariate_normal(mean=self.running_mean.cpu().data.numpy(), 
-                                                                     cov=self.running_cov.cpu().data.numpy(), 
-                                                                     size=input.size(0))).to('cuda' if torch.cuda.is_available else 'cpu')
+            result = torch.FloatTensor(np.random.multivariate_normal(mean=self.running_mean.cpu().data.numpy(), cov=self.running_cov.cpu().data.numpy(), size=input.size(0))).to('cuda' if torch.cuda.is_available else 'cpu')
             return result
 
         return self.running_mean.expand(input.size(0), -1)

@@ -220,7 +220,7 @@ def BulidDataloader(args, flag1='train', flag2='source'):
     data_imgs, data_labels, data_bboxs, data_landmarks = [], [], [], []
     if flag1 == 'train':
         if flag2 == 'source':
-            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/list_patition_label.txt'%(args.source), header=None, delim_whitespace=True)
+            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/image_list.txt'%(args.source), header=None, delim_whitespace=True)
             list_patition_label = np.array(list_patition_label)
             for index in range(list_patition_label.shape[0]):
                 if list_patition_label[index,0][:5] == "train":
@@ -228,40 +228,40 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         continue
                     if not os.path.exists(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-4]+'.txt'):
                         continue
-                    
                     bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.source)+list_patition_label[index,0][:-4]+'_boundingbox.txt').astype(np.int)
                     landmark = np.loadtxt(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
 
-                    data_imgs.append(dataPath_prefix+'/%s/Images/'%(args.source)+list_patition_label[index,0])
-                    data_labels.append(list_patition_label[index,1]-1)
+                    data_imgs.append(dataPath_prefix+'/%s/images/'%(args.source)+list_patition_label[index,0])
+                    data_labels.append(list_patition_label[index,1])
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
-
+            
         if flag2 == 'target':
-            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/list_partition_label.txt'%(args.target), header=None, delim_whitespace=True)
+            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/image_list.txt'%(args.target), header=None, delim_whitespace=True)
             list_patition_label = np.array(list_patition_label)
-
             for index in range(list_patition_label.shape[0]):
+                
                 if list_patition_label[index,0][:5] == "train":
-
-                    if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
-                        continue
+                    #if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
+                        #continue
+                    
                     if not os.path.exists(dataPath_prefix+'/%s/landmarks_5/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
+                        #print(list_patition_label[index,0][:-3]+'txt')
                         continue
-
-                    bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
+                    img = Image.open(dataPath_prefix + '/%s/images/'%(args.target)+list_patition_label[index,0]).convert('RGB')
+                    ori_img_w, ori_img_h = img.size
+                    #bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
                     landmark = np.loadtxt(dataPath_prefix+'/%s/landmarks_5/'%(args.target)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
 
-                    data_imgs.append(dataPath_prefix+'/%s/images'%(args.target)+list_patition_label[index,0])
-                    data_labels.append(list_patition_label[index,1]-1)
-                    data_bboxs.append(bbox)
+                    data_imgs.append(dataPath_prefix+'/%s/images/'%(args.target)+list_patition_label[index,0])
+                    data_labels.append(list_patition_label[index,1])
+                    data_bboxs.append((0,0,ori_img_w,ori_img_h))
                     data_landmarks.append(landmark)
                         
     elif flag1 == 'test':
         if flag2 =='source':
-            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/list_patition_label.txt'%(args.source), header=None, delim_whitespace=True)
+            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/image_list.txt'%(args.source), header=None, delim_whitespace=True)
             list_patition_label = np.array(list_patition_label)
-            
             for index in range(list_patition_label.shape[0]):
                 if list_patition_label[index,0][:4] == "test":
                     if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.source)+list_patition_label[index,0][:-4]+'_boundingbox.txt'):
@@ -269,37 +269,41 @@ def BulidDataloader(args, flag1='train', flag2='source'):
                         continue
                     if not os.path.exists(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-3]+'txt'):
                         continue
-                    bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.source)+list_patition_label[index,0][:-4]+'_boundingbox.txt').astype(np.int)
+
+                    bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.source) + list_patition_label[index,0][:-4]+'_boundingbox.txt').astype(np.int)
                     landmark = np.loadtxt(dataPath_prefix+'/%s/landmarks_5/'%(args.source)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
                     data_imgs.append(dataPath_prefix+'/%s/images/'%(args.source)+ list_patition_label[index,0])
-                    data_labels.append(list_patition_label[index,1]-1)
+                    data_labels.append(list_patition_label[index,1])
                     data_bboxs.append(bbox)
                     data_landmarks.append(landmark)
 
         elif flag2=='target':
-            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/list_partition_label.txt'%(args.target), header=None, delim_whitespace=True)
+            list_patition_label = pd.read_csv(dataPath_prefix+'/%s/lists/image_list.txt'%(args.target), header=None, delim_whitespace=True)
             list_patition_label = np.array(list_patition_label)
-
             for index in range(list_patition_label.shape[0]):
-                if list_patition_label[index,0][:5] == "train":
-
-                    if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
-                        continue
+                if list_patition_label[index,0][:4] == "test":
+                    #if not os.path.exists(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
+                        #continue
                     if not os.path.exists(dataPath_prefix+'/%s/landmarks_5/'%(args.target)+list_patition_label[index,0][:-3]+'txt'):
                         continue
-
-                    bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
+                    img = Image.open(dataPath_prefix + '/%s/images/'%(args.target)+list_patition_label[index,0]).convert('RGB')
+                    ori_img_w, ori_img_h = img.size
+                    #bbox = np.loadtxt(dataPath_prefix+'/%s/boundingbox/'%(args.target)+list_patition_label[index,0][:-3]+'txt').astype(np.int)
                     landmark = np.loadtxt(dataPath_prefix+'/%s/landmarks_5/'%(args.target) + list_patition_label[index,0][:-3]+'txt').astype(np.int)
 
-                    data_imgs.append(dataPath_prefix+'/%s/images'%(args.target)+list_patition_label[index,0])
-                    data_labels.append(list_patition_label[index,1]-1)
-                    data_bboxs.append(bbox)
+                    data_imgs.append(dataPath_prefix+'/%s/images/'%(args.target)+list_patition_label[index,0])
+                    data_labels.append(list_patition_label[index,1])
+                    data_bboxs.append((0,0,ori_img_w,ori_img_h))
                     data_landmarks.append(landmark)
         
     # DataSet Distribute
     distribute_ = np.array(data_labels)
-    print(' %s %s dataset qty: %d' % ( flag1, flag2, len(data_imgs) ) )
-    print(' %s %s dataset dist: %d, %d, %d, %d, %d, %d, %d' % (flag1, flag2, np.sum(distribute_==0), np.sum(distribute_==1), np.sum(distribute_==2), np.sum(distribute_==3), np.sum(distribute_==4), np.sum(distribute_==5), np.sum(distribute_==6) ))
+    print(' %s %s dataset qty: %d' % ( flag1, flag2, len(data_imgs)))
+    dataset_dist = []
+    for i in range(args.class_num):
+        dataset_dist.append(np.sum(distribute_==i))
+
+    print("Dataset Distribution for %s classes is: "%(args.class_num), dataset_dist)
 
     # DataSet
     data_set = MyDataset(data_imgs, data_labels, data_bboxs, data_landmarks, flag1, trans, target_trans)

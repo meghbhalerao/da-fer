@@ -62,6 +62,7 @@ parser.add_argument('--class_num', type=int, default=7, help='number of class (d
 parser.add_argument('--seed', type=int, default=1, help='random seed (default: 1)')
 parser.add_argument('--rand_layer', type=str2bool, default=False, help='whether to use random')
 parser.add_argument('--use_cluster', type=str2bool, default=False, help='whether to use Cluster')
+parser.add_argument('--method', type=str, default="CADA", help='Choose the method of the experiment')
 
 def Train(args, model, ad_net, random_layer, train_source_dataloader, train_target_dataloader, optimizer, optimizer_ad, epoch, writer):
     """Train."""

@@ -1,6 +1,6 @@
 Log_Name='ResNet50_CropNet_withoutAFN_transferToTargetDomain_RAFtoCK+'
-Resume_Model='ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl'
-##Resume_Model=None
+##Resume_Model='ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl'
+Resume_Model=None
 OutputPath='.'
 GPU_ID=1
 Backbone='ResNet50'
@@ -24,7 +24,7 @@ momentum=0.9
 weight_decay=0.0001
 isTest='False'
 showFeature='False'
-class_num=7
+class_num=2
 useIntraGCN='True'
 useInterGCN='True'
 useLocalFeature='True'
