@@ -27,8 +27,8 @@ parser = argparse.ArgumentParser(description='Expression Classification Training
 
 parser.add_argument('--Log_Name', type=str, help='Log Name')
 parser.add_argument('--OutputPath', type=str, help='Output Path')
-parser.add_argument('--Backbone', type=str, default='ResNet50', choices=['ResNet18', 'ResNet50', 'VGGNet', 'MobileNet'])
-parser.add_argument('--Resume_Model', type=str, help='Resume_Model', default='None')
+parser.add_argument('--net', type=str, default='ResNet50', choices=['ResNet18', 'ResNet50', 'VGGNet', 'MobileNet'])
+parser.add_argument('--pretrained', type=str, help='Resume_Model', default='None')
 parser.add_argument('--GPU_ID', default='0', type=str, help='CUDA_VISIBLE_DEVICES')
 
 parser.add_argument('--useAFN', type=str2bool, default=False, help='whether to use AFN Loss')
@@ -37,11 +37,11 @@ parser.add_argument('--radius', type=float, default=25.0, help='radius of HAFN (
 parser.add_argument('--deltaRadius', type=float, default=1.0, help='radius of SAFN (default: 1.0)')
 parser.add_argument('--weight_L2norm', type=float, default=0.05, help='weight L2 norm of AFN (default: 0.05)')
 
-parser.add_argument('--faceScale', type=int, default=112, help='Scale of face (default: 112)')
-parser.add_argument('--sourceDataset', type=str, default='RAF', choices=['RAF', 'AFED', 'MMI'])
-parser.add_argument('--targetDataset', type=str, default='CK+', choices=['RAF', 'CK+', 'JAFFE', 'MMI', 'Oulu-CASIA', 'SFEW', 'FER2013', 'ExpW', 'AFED', 'WFED'])
-parser.add_argument('--train_batch_size', type=int, default=64, help='input batch size for training (default: 64)')
-parser.add_argument('--test_batch_size', type=int, default=64, help='input batch size for testing (default: 64)')
+parser.add_argument('--face_scale', type=int, default=112, help='Scale of face (default: 112)')
+parser.add_argument('--source', type=str, default='RAF', choices=['RAF', 'AFED', 'MMI'])
+parser.add_argument('--target', type=str, default='CK+', choices=['RAF', 'CK+', 'JAFFE', 'MMI', 'Oulu-CASIA', 'SFEW', 'FER2013', 'ExpW', 'AFED', 'WFED','AISIN'])
+parser.add_argument('--train_batch', type=int, default=64, help='input batch size for training (default: 64)')
+parser.add_argument('--test_batch', type=int, default=64, help='input batch size for testing (default: 64)')
 parser.add_argument('--useMultiDatasets', type=str2bool, default=False, help='whether to use MultiDataset')
 
 parser.add_argument('--lr', type=float, default=0.01)
@@ -52,18 +52,20 @@ parser.add_argument('--weight_decay', type=float, default=0.0005,help='SGD weigh
 parser.add_argument('--isTest', type=str2bool, default=False, help='whether to test model')
 parser.add_argument('--showFeature', type=str2bool, default=False, help='whether to show feature')
 
-parser.add_argument('--useIntraGCN', type=str2bool, default=False, help='whether to use Intra-GCN')
-parser.add_argument('--useInterGCN', type=str2bool, default=False, help='whether to use Inter-GCN')
-parser.add_argument('--useLocalFeature', type=str2bool, default=False, help='whether to use Local Feature')
+parser.add_argument('--intra_gcn', type=str2bool, default=False, help='whether to use Intra-GCN')
+parser.add_argument('--inter_gcn', type=str2bool, default=False, help='whether to use Inter-GCN')
+parser.add_argument('--local_feat', type=str2bool, default=False, help='whether to use Local Feature')
 
-parser.add_argument('--useRandomMatrix', type=str2bool, default=False, help='whether to use Random Matrix')
-parser.add_argument('--useAllOneMatrix', type=str2bool, default=False, help='whether to use All One Matrix')
+parser.add_argument('--rand_mat', type=str2bool, default=False, help='whether to use Random Matrix')
+parser.add_argument('--all1_mat', type=str2bool, default=False, help='whether to use All One Matrix')
 
-parser.add_argument('--useCov', type=str2bool, default=False, help='whether to use Cov')
-parser.add_argument('--useCluster', type=str2bool, default=False, help='whether to use Cluster')
+parser.add_argument('--use_cov', type=str2bool, default=False, help='whether to use Cov')
+parser.add_argument('--use_cluster', type=str2bool, default=False, help='whether to use Cluster')
 
 parser.add_argument('--class_num', type=int, default=7, help='number of class (default: 7)')
 parser.add_argument('--seed', type=int, default=1, help='random seed (default: 1)')
+parser.add_argument('--use_gcn', type=str2bool, default=False, help='whether to use Graph Convolutional (AGRA) Network')
+
 
 def Train(args, model, train_dataloader, optimizer, epoch, writer):
     """Train."""
@@ -116,7 +118,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
 
         # Compute Loss
         global_cls_loss_ = nn.CrossEntropyLoss()(output, label) 
-        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label) if args.useLocalFeature else 0
+        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label) if args.local_feat else 0
         afn_loss_ = (HAFN(feature, args.weight_L2norm, args.radius) if args.methodOfAFN=='HAFN' else SAFN(feature, args.weight_L2norm, args.deltaRadius)) if args.useAFN else 0
         loss_ = global_cls_loss_ + local_cls_loss_ + (afn_loss_ if args.useAFN else 0)
 
@@ -137,7 +139,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
         # Log loss
         loss.update(float(loss_.cpu().data.item()))
         global_cls_loss.update(float(global_cls_loss_.cpu().data.item()))
-        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.useLocalFeature else 0)
+        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.local_feat else 0)
         afn_loss.update(float(afn_loss_.cpu().data.item()) if args.useAFN else 0)
 
         end = time.time()
@@ -194,7 +196,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
         
         # Compute Loss
         global_cls_loss_ = nn.CrossEntropyLoss()(output, label)
-        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label) if args.useLocalFeature else 0
+        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label) if args.local_feat else 0
         afn_loss_ = (HAFN(feature, args.weight_L2norm, args.radius) if args.methodOfAFN=='HAFN' else SAFN(feature, args.weight_L2norm, args.deltaRadius)) if args.useAFN else 0
         loss_ = global_cls_loss_ + local_cls_loss_ + (afn_loss_ if args.useAFN else 0)
 
@@ -204,7 +206,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
         # Log loss
         loss.update(float(loss_.cpu().data.item()))
         global_cls_loss.update(float(global_cls_loss_.cpu().data.item()))
-        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.useLocalFeature else 0)
+        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.local_feat else 0)
         afn_loss.update(float(afn_loss_.cpu().data.item()) if args.useAFN else 0)
 
         end = time.time()
@@ -252,7 +254,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
         
         # Compute Loss
         global_cls_loss_ = nn.CrossEntropyLoss()(output, label)
-        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label)  if args.useLocalFeature else 0
+        local_cls_loss_ = nn.CrossEntropyLoss()(loc_output, label)  if args.local_feat else 0
         afn_loss_ = (HAFN(feature, args.weight_L2norm, args.radius) if args.methodOfAFN=='HAFN' else SAFN(feature, args.weight_L2norm, args.deltaRadius)) if args.useAFN else 0
         loss_ = global_cls_loss_ + local_cls_loss_ + (afn_loss_ if args.useAFN else 0)
 
@@ -262,7 +264,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
         # Log loss
         loss.update(float(loss_.cpu().data.item()))
         global_cls_loss.update(float(global_cls_loss_.cpu().data.item()))
-        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.useLocalFeature else 0)
+        local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.local_feat else 0)
         afn_loss.update(float(afn_loss_.cpu().data.item()) if args.useAFN else 0)
 
         end = time.time()
@@ -292,9 +294,9 @@ def main():
     torch.manual_seed(args.seed)
 
     # Experiment Information
-    print('log : %s' % args.Log_Name, 'out-pth %s' % args.OutputPath, 'net: %s' % args.net, 'pretrained %s' % args.Resume_Model, 'dev %s' % args.GPU_ID )
+    print('log : %s' % args.Log_Name, 'out-pth %s' % args.OutputPath, 'net: %s' % args.net, 'pretrained %s' % args.pretrained, 'dev %s' % args.GPU_ID )
 
-    print('Use {} * {} Image'.format(args.faceScale, args.faceScale), 'source %s' % args.sourceDataset, 'target %s' % args.targetDataset, 'train bs %d' % args.train_batch_size,'test bs %d' % args.test_batch_size)
+    print('Use {} * {} Image'.format(args.face_scale, args.face_scale), 'source %s' % args.source, 'target %s' % args.target, 'train bs %d' % args.train_batch,'test bs %d' % args.test_batch)
 
     if args.showFeature:
         print('Show Visualization Result of Feature.')
@@ -315,32 +317,32 @@ def main():
     print('================================================')
 
     print('Num cls : %d' % args.class_num)
-    if not args.useLocalFeature:
+    if not args.local_feat:
         print('Only use global feature.')
     else:
         print('Use global feature and local feature.')
 
-        if args.useIntraGCN:
+        if args.intra_gcn:
             print('Use Intra GCN.')
-        if args.useInterGCN:
+        if args.inter_gcn:
             print('Use Inter GCN.')
 
-        if args.useRandomMatrix and args.useAllOneMatrix:
+        if args.rand_mat and args.all1_mat:
             print('Wrong : Use RandomMatrix and AllOneMatrix both!')
             return None
-        elif args.useRandomMatrix:
+        elif args.rand_mat:
             print('Use Random Matrix in GCN.')
-        elif args.useAllOneMatrix:
+        elif args.all1_mat:
             print('Use All One Matrix in GCN.')
 
-        if args.useCov and args.useCluster:
+        if args.use_cov and args.use_cluster:
             print('Wrong : Use Cov and Cluster both!')
             return None
         else:
-            if args.useCov:
+            if args.use_cov:
                 print('Use Mean and Cov.')
             else:
-                print('Use Mean.') if not args.useCluster else print('Use Mean in Cluster.')
+                print('Use Mean.') if not args.use_cluster else print('Use Mean in Cluster.')
 
     print('================================================')
 
@@ -362,12 +364,12 @@ def main():
     print('================================================')
 
     # Init Mean
-    if args.useLocalFeature and not args.isTest: 
-        if args.useCov:
+    if args.local_feat and not args.isTest: 
+        if args.use_cov:
             print('Init Mean and Cov...')
             Initialize_Mean_Cov(args, model, True)
         else:
-            if args.useCluster:
+            if args.use_cluster:
                 print('Initialize Mean in Cluster....')
                 Initialize_Mean_Cluster(args, model, True)
             else:         
@@ -402,7 +404,7 @@ def main():
             VisualizationForTwoDomain('{}_test'.format(epoch), model, test_source_dataloader, test_target_dataloader, useClassify=True, showClusterCenter=False)
 
         if not args.isTest:
-            if args.useCluster and epoch%10 == 0:
+            if args.use_cluster and epoch%10 == 0:
                 Initialize_Mean_Cluster(args, model, True)
                 torch.cuda.empty_cache()
             Train(args, model, train_source_dataloader, optimizer, epoch, writer)

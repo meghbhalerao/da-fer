@@ -285,13 +285,13 @@ class Backbone(nn.Module):
             feature = torch.cat((SourceMean,TargetFeature), 1)              # Batch * (64+320 + 64+320)
             feature = self.GCN(feature.view(feature.size(0), 12, -1))       # Batch * 12 * 64
             
-        feature = feature.view(feature.size(0), -1)      # Batch * (64+320 + 64+320)
+        feature = feature.view(feature.size(0), -1)# Batch * (64+320 + 64+320)
         if domain=='Source':
-            feature = feature.narrow(1, 0, 64+320)       # Batch * (64+320)
+            feature = feature.narrow(1, 0, 64+320)# Batch * (64+320)
         elif domain=='Target':   
             feature = feature.narrow(1, 64+320, 64+320)  # Batch * (64+320)
 
-        loc_feature = feature.narrow(1, 64, 320)         # Batch * 320
+        loc_feature = feature.narrow(1, 64, 320)# Batch * 320
 
         pred = self.fc(feature)             # Batch * 7
         loc_pred = self.loc_fc(loc_feature) # Batch * 7

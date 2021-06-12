@@ -1,4 +1,4 @@
-Log_Name='ResNet50_CropNet_withoutAFN_transferToTargetDomain_RAFtoCK+'
+Log_Name='raf2aisin_res50'
 ##Resume_Model='ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl'
 Resume_Model=None
 OutputPath='.'
