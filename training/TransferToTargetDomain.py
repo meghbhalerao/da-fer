@@ -70,7 +70,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
     model.train()
     torch.autograd.set_detect_anomaly(True)
 
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, global_cls_loss, local_cls_loss, afn_loss, dan_loss = AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter()
     data_time, batch_time = AverageMeter(), AverageMeter()
 

@@ -141,7 +141,7 @@ def init_weights(m):
         nn.init.zeros_(m.bias)
 
 class Backbone(nn.Module):
-    def __init__(self, numOfLayer, useIntraGCN=True, useInterGCN=True, useRandomMatrix=False, useAllOneMatrix=False, useCov=False, useCluster=False):   
+    def __init__(self, numOfLayer, useIntraGCN=True, useInterGCN=True, useRandomMatrix=False, useAllOneMatrix=False, useCov=False, useCluster=False, class_num = 7):   
 
         super(Backbone, self).__init__()
 
@@ -172,10 +172,10 @@ class Backbone(nn.Module):
         cropNet_modules+=[nn.Conv2d(in_channels=512, out_channels=64, kernel_size=(3,3), stride=(1,1), padding=(1,1)), nn.ReLU()]
         self.Crop_Net = nn.ModuleList([ copy.deepcopy(nn.Sequential(*cropNet_modules)) for i in range(5) ])
 
-        self.fc = nn.Linear(64 + 320, 7)
+        self.fc = nn.Linear(64 + 320, class_num)
         self.fc.apply(init_weights)
 
-        self.loc_fc = nn.Linear(320, 7)
+        self.loc_fc = nn.Linear(320, class_num)
         self.loc_fc.apply(init_weights)
 
         self.GAP = nn.AdaptiveAvgPool2d((1,1))
@@ -196,7 +196,7 @@ class Backbone(nn.Module):
         featureMap1 = self.layer1(featureMap)  # Batch * 64 * 56 * 56
         featureMap2 = self.layer2(featureMap1) # Batch * 128 * 28 * 28
         featureMap3 = self.layer3(featureMap2) # Batch * 256 * 14 * 14
-        featureMap4 = self.layer4(featureMap3) # Batch * 512 * 7 * 7
+        featureMap4 = self.layer4(featureMap3) # Batch * 512 * class_num * class_num
 
         global_feature = self.output_layer(featureMap4).view(featureMap.size(0), -1) # Batch * 64
         loc_feature = self.crop_featureMap(featureMap2, locations)                   # Batch * 320
@@ -211,8 +211,8 @@ class Backbone(nn.Module):
         feature = feature.view(feature.size(0), -1).narrow(1, 0, 64+320) # Batch * (64+320)
         loc_feature = feature.narrow(1, 64, 320)                         # Batch * 320
 
-        pred = self.fc(feature)              # Batch * 7
-        loc_pred = self.loc_fc(loc_feature)  # Batch * 7
+        pred = self.fc(feature)              # Batch * class_num
+        loc_pred = self.loc_fc(loc_feature)  # Batch * class_num
 
         return feature, pred, loc_pred
 
@@ -225,7 +225,7 @@ class Backbone(nn.Module):
         featureMap1 = self.layer1(featureMap)  # Batch * 64 * 56 * 56
         featureMap2 = self.layer2(featureMap1) # Batch * 128 * 28 * 28
         featureMap3 = self.layer3(featureMap2) # Batch * 256 * 14 * 14
-        featureMap4 = self.layer4(featureMap3) # Batch * 512 * 7 * 7
+        featureMap4 = self.layer4(featureMap3) # Batch * 512 * class_num * class_num
 
         global_feature = self.output_layer(featureMap4).view(featureMap.size(0), -1)  # Batch * 64
         loc_feature = self.crop_featureMap(featureMap2, locations)                    # Batch * 320
@@ -255,12 +255,11 @@ class Backbone(nn.Module):
             feature = self.GCN(feature.view(feature.size(0), 12, -1))                                                       # Batch * 12 * 64
 
             feature = feature.view(feature.size(0), -1)                                                                     # Batch * (64+320 + 64+320)
-            feature = torch.cat( (feature.narrow(0, 0, feature.size(0)//2).narrow(1, 0, 64+320), \
-                                  feature.narrow(0, feature.size(0)//2, feature.size(0)//2).narrow(1, 64+320, 64+320) ), 0) # Batch * (64+320)
+            feature = torch.cat( (feature.narrow(0, 0, feature.size(0)//2).narrow(1, 0, 64+320), feature.narrow(0, feature.size(0)//2, feature.size(0)//2).narrow(1, 64+320, 64+320) ), 0) # Batch * (64+320)
             loc_feature = feature.narrow(1, 64, 320)                                                                        # Batch * 320
 
-            pred = self.fc(feature)             # Batch * 7
-            loc_pred = self.loc_fc(loc_feature) # Batch * 7
+            pred = self.fc(feature)             # Batch * class_num
+            loc_pred = self.loc_fc(loc_feature) # Batch * class_num
 
             return feature, pred, loc_pred
 
@@ -293,8 +292,8 @@ class Backbone(nn.Module):
 
         loc_feature = feature.narrow(1, 64, 320)# Batch * 320
 
-        pred = self.fc(feature)             # Batch * 7
-        loc_pred = self.loc_fc(loc_feature) # Batch * 7
+        pred = self.fc(feature)             # Batch * class_num
+        loc_pred = self.loc_fc(loc_feature) # Batch * class_num
 
         return feature, pred, loc_pred
 
@@ -441,10 +440,10 @@ class Backbone_onlyGlobal(nn.Module):
                             ]
         return parameter_list
 
-def IR(numOfLayer, useIntraGCN, useInterGCN, useRandomMatrix, useAllOneMatrix, useCov, useCluster):
+def IR(numOfLayer, useIntraGCN, useInterGCN, useRandomMatrix, useAllOneMatrix, useCov, useCluster, class_num):
     """Constructs a ir-18/ir-50 model."""
 
-    model = Backbone(numOfLayer, useIntraGCN, useInterGCN, useRandomMatrix, useAllOneMatrix, useCov, useCluster)
+    model = Backbone(numOfLayer, useIntraGCN, useInterGCN, useRandomMatrix, useAllOneMatrix, useCov, useCluster, class_num)
 
     return model
 

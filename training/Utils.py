@@ -123,7 +123,7 @@ def Compute_Accuracy(args, pred, target, acc, prec, recall):
     pred = pred.astype(np.int32).reshape(pred.shape[0],)
     target = target.astype(np.int32).reshape(target.shape[0],)
 
-    for i in range(7):
+    for i in range(args.class_num):
         TP = np.sum((pred==i)*(target==i))
         TN = np.sum((pred!=i)*(target!=i))
         
@@ -141,13 +141,13 @@ def BulidModel(args):
 
     if args.local_feat:
         if args.net == 'ResNet18':
-            model = IR(18, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+            model = IR(18, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster,args.class_num)
         elif args.net == 'ResNet50':
-            model = IR(50, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+            model = IR(50, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster,args.class_num)
         elif args.net == 'VGGNet':
-            model = VGG(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+            model = VGG(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster, args.class_num)
         elif args.net == 'MobileNet':
-            model = MobileNetV2(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster)
+            model = MobileNetV2(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster, args.class_num)
     else:
         if args.net == 'ResNet18':
             model = IR_onlyGlobal(18)

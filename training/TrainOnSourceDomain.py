@@ -73,7 +73,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
     model.train()
     torch.autograd.set_detect_anomaly(True)
 
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, global_cls_loss, local_cls_loss, afn_loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter()
 
     # Decay Learn Rate per Epoch
@@ -135,7 +135,7 @@ def Train(args, model, train_dataloader, optimizer, epoch, writer):
 
         # Compute accuracy, recall and loss
         Compute_Accuracy(args, output, label, acc, prec, recall)
-
+    
         # Log loss
         loss.update(float(loss_.cpu().data.item()))
         global_cls_loss.update(float(global_cls_loss_.cpu().data.item()))
@@ -179,7 +179,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
     iter_target_dataloader = iter(test_target_dataloader)
 
     # Test on Source Domain
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, global_cls_loss, local_cls_loss, afn_loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter()
 
     end = time.time()
@@ -237,7 +237,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Recal
             torch.save(model.state_dict(), os.path.join(args.OutputPath, '{}.pkl'.format(args.Log_Name)))
 
     # Test on Target Domain
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, global_cls_loss, local_cls_loss, afn_loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter(), AverageMeter()
 
     end = time.time()
