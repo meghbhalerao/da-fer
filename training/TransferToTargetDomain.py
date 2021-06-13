@@ -238,7 +238,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Accur
     iter_target_dataloader = iter(test_target_dataloader)
 
     # Test on Source Domain
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter()
 
     end = time.time()
@@ -280,7 +280,7 @@ def Test(args, model, test_source_dataloader, test_target_dataloader, Best_Accur
     print(LoggerInfo)
 
     # Test on Target Domain
-    acc, prec, recall = [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)], [AverageMeter() for i in range(7)]
+    acc, prec, recall = [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)], [AverageMeter() for i in range(args.class_num)]
     loss, data_time, batch_time =  AverageMeter(), AverageMeter(), AverageMeter()
 
     end = time.time()
