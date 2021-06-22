@@ -1,7 +1,7 @@
 Log_Name='raf2aisin_res50'
 Resume_Model=None
 OutputPath='.'
-GPU_ID=1
+GPU_ID=0    
 Backbone='ResNet50'
 useAFN='False'
 methodOfAFN='SAFN'

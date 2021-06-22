@@ -119,6 +119,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
         # Forward Propagation
         end = time.time()
         feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
+        feat_target_only = model(data_target, landmark_target, False)
         batch_time.update(time.time()-end)
 
         # Compute Loss
@@ -137,7 +138,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
             elif args.dan_method == 'DANN':
                 dan_loss_ = DANN(feature, ad_net)
             elif args.dan_method == "MME":
-                    dan_loss_  = MME(feature)
+                    dan_loss_  = MME(feat_target_only)
                     if epoch >=1000:
                         a, b, _, _, pl_loss = do_fixmatch(f, data_target_,label_target,landmark_target,model,0.975,nn.CrossEntropyLoss(reduce='none'))
                         sum_ = sum_ + a

@@ -341,7 +341,7 @@ def Show_Accuracy(acc, prec, recall, class_num=7):
     # Log Accuracy Infomation
     Accuracy_Info = ''
     
-    Accuracy_Info+='    Accuracy'
+    Accuracy_Info+='Accuracy'
     for i in range(class_num):
         Accuracy_Info+=' {:.4f}'.format(acc[i].avg)
     Accuracy_Info+='\n'
