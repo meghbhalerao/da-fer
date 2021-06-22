@@ -118,8 +118,13 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
 
         # Forward Propagation
         end = time.time()
-        feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
-        feat_target_only = model(data_target, landmark_target, False)
+        #feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
+
+        feat_target, out_target, loc_out_target = model(data_target, landmark_target, False)
+        feat_source, out_source, loc_out_source = model(data_source, landmark_source, False)
+        feature = torch.cat((feat_source,feat_target),0)
+        output = torch.cat((out_target,out_source),0)
+        loc_output = torch.cat((loc_out_source,loc_out_target),0)
         batch_time.update(time.time()-end)
 
         # Compute Loss
