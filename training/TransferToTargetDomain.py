@@ -177,8 +177,11 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 adnet_output = ad_net(feature)
 
             adnet_output = adnet_output.cpu().data.numpy()
+                
             adnet_output[adnet_output>0.5] = 1
             adnet_output[adnet_output<=0.5] = 0
+            if args.dan_method == 'MME':
+                adnet_output[adnet_output>0.5] = 0
             num_ADNet+=np.sum(adnet_output[:args.train_batch]) + (args.train_batch - np.sum(adnet_output[args.train_batch:]))
 
         # Back Propagation
