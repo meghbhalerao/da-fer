@@ -142,8 +142,9 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 dan_loss_ = CDAN([feature, softmax_output], ad_net, None, None, random_layer)
             elif args.dan_method == 'DANN':
                 dan_loss_ = DANN(feature, ad_net)
+                print(dan_loss_)
             elif args.dan_method == "MME":
-                    dan_loss_  = MME(feat_target_only)
+                    dan_loss_  = MME(feat_target)
                     if epoch >=1000:
                         a, b, _, _, pl_loss = do_fixmatch(f, data_target_,label_target,landmark_target,model,0.975,nn.CrossEntropyLoss(reduce='none'))
                         sum_ = sum_ + a
@@ -172,7 +173,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 else:
                     op_out = torch.bmm(softmax_output.unsqueeze(2), feature.unsqueeze(1))
                     adnet_output = ad_net(op_out.view(-1, softmax_output.size(1) * feature.size(1)))
-            elif args.dan_method=='DANN' or args.dan_method=='MME': 
+            elif args.dan_method=='DANN': 
                 adnet_output = ad_net(feature)
 
             adnet_output = adnet_output.cpu().data.numpy()

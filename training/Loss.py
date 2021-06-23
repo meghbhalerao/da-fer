@@ -28,6 +28,7 @@ def DANN(features, ad_net):
         dc_target = dc_target.cuda()
 
     return nn.BCELoss()(ad_out, dc_target)
+    
 def MME(features, coeff = 1):
     '''
     Paper Link : https://arxiv.org/pdf/1904.06487.pdf
