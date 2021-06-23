@@ -131,7 +131,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
         global_cls_loss_ = nn.CrossEntropyLoss()(output.narrow(0, 0, data_source.size(0)), label_source)
         local_cls_loss_ = nn.CrossEntropyLoss()(loc_output.narrow(0, 0, data_source.size(0)), label_source) if args.local_feat else 0
 
-        afn_loss_ = (HAFN(feature, args.wl2, args.r) if args.afn_method=='HAFN' else SAFN(feature, args.w_l2, args.dr)) if args.use_afn else 0
+        afn_loss_ = (HAFN(feature, args.w_l2, args.r) if args.afn_method=='HAFN' else SAFN(feature, args.w_l2, args.dr)) if args.use_afn else 0
         
         if args.use_dan:
             softmax_output = nn.Softmax(dim=1)(output)
@@ -182,7 +182,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
             adnet_output[adnet_output<=0.5] = 0
             if args.dan_method == 'MME':
                 adnet_output[adnet_output>0.5] = 0
-            num_ADNet+=np.sum(adnet_output[:args.train_batch]) + (args.train_batch - np.sum(adnet_output[args.train_batch:]))
+            num_ADNet+=np.sum(adnet_output[:args.train_batch]) + (args.train_batch - np. sum(adnet_output[args.train_batch:]))
 
         # Back Propagation
         optimizer.zero_grad()
