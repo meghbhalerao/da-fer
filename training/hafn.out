@@ -1,0 +1,88 @@
+Log Name: raf2aisin_res50
+Output Path: .
+Backbone: ResNet50
+Resume Model: None
+CUDA_VISIBLE_DEVICES: 0
+================================================
+Use 112 * 112 Image
+SourceDataset: RAF
+TargetDataset: AISIN
+Train Batch Size: 32
+Test Batch Size: 32
+================================================
+Train Epoch: 100
+Learning Rate: 0.000100
+Momentum: 0.900000
+Weight Decay: 0.000100
+Use AFN Loss: HAFN
+Radius of HAFN Loss: 25.000000
+Weight L2 nrom of AFN Loss: 0.050000
+Use DAN Loss: MME
+Learning Rate(Adversarial Network): 0.001000
+================================================
+Number of classes : 2
+Use global feature and local feature.
+Use Mean.
+================================================
+Building Train and Test Dataloader...
+ train source dataset qty: 1395
+Dataset Distribution for 2 classes is:  [713, 682]
+ train target dataset qty: 9081
+Dataset Distribution for 2 classes is:  [1671, 7410]
+ test source dataset qty: 318
+Dataset Distribution for 2 classes is:  [158, 160]
+ test target dataset qty: 2541
+Dataset Distribution for 2 classes is:  [467, 2074]
+Done!
+================================================
+Building Model...
+No Resume Model
+Done!
+================================================
+Building Adversarial Network...
+Done!
+================================================
+Building Optimizer...
+Done!
+================================================
+Init Mean...
+ train source dataset qty: 1395
+Dataset Distribution for 2 classes is:  [713, 682]
+ train target dataset qty: 9081
+Dataset Distribution for 2 classes is:  [1671, 7410]
+2021-06-23 21:12:56.299453: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+Done!
+================================================
+Run Experiment...
+Traceback (most recent call last):
+  File "TransferToTargetDomain.py", line 513, in <module>
+    main()
+  File "TransferToTargetDomain.py", line 506, in main
+    Train(args, model, ad_net, random_layer, train_source_dataloader, train_target_dataloader, optimizer, optimizer_ad, epoch, writer)
+  File "TransferToTargetDomain.py", line 121, in Train
+    feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/megh/projects/fer/da-fer/training/ResNet.py", line 305, in forward
+    return self.transfer(imgs, locations, domain)
+  File "/home/megh/projects/fer/da-fer/training/ResNet.py", line 227, in transfer
+    featureMap3 = self.layer3(featureMap2) # Batch * 256 * 14 * 14
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/container.py", line 117, in forward
+    input = module(input)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/megh/projects/fer/da-fer/training/ResNet.py", line 64, in forward
+    res = self.res_layer(x)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/container.py", line 117, in forward
+    input = module(input)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/modules/activation.py", line 1046, in forward
+    return F.prelu(input, self.weight)
+  File "/home/megh/anaconda3/envs/fer/lib/python3.8/site-packages/torch/nn/functional.py", line 1333, in prelu
+    return torch.prelu(input, weight)
+RuntimeError: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 10.76 GiB total capacity; 4.32 GiB already allocated; 16.44 MiB free; 4.49 GiB reserved in total by PyTorch)

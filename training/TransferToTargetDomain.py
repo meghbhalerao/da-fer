@@ -118,13 +118,13 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
 
         # Forward Propagation
         end = time.time()
-        #feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
-
-        feat_target, out_target, loc_out_target = model(data_target, landmark_target, False)
-        feat_source, out_source, loc_out_source = model(data_source, landmark_source, False)
-        feature = torch.cat((feat_source,feat_target),0)
-        output = torch.cat((out_target,out_source),0)
-        loc_output = torch.cat((loc_out_source,loc_out_target),0)
+        feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
+        feat_target = feature[0:args.train_batch,:]
+        #feat_target, out_target, loc_out_target = model(data_target, landmark_target, False)
+        #feat_source, out_source, loc_out_source = model(data_source, landmark_source, False)
+        #feature = torch.cat((feat_source,feat_target),0)
+        #output = torch.cat((out_target,out_source),0)
+        #loc_output = torch.cat((loc_out_source,loc_out_target),0)
         batch_time.update(time.time()-end)
 
         # Compute Loss
@@ -144,7 +144,8 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 dan_loss_ = DANN(feature, ad_net)
                 print(dan_loss_)
             elif args.dan_method == "MME":
-                    dan_loss_  = MME(feat_target)
+                    dan_loss_  = MME(model, feat_target)
+                    dan_loss_.backward()
                     if epoch >=1000:
                         a, b, _, _, pl_loss = do_fixmatch(f, data_target_,label_target,landmark_target,model,0.975,nn.CrossEntropyLoss(reduce='none'))
                         sum_ = sum_ + a
@@ -173,7 +174,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 else:
                     op_out = torch.bmm(softmax_output.unsqueeze(2), feature.unsqueeze(1))
                     adnet_output = ad_net(op_out.view(-1, softmax_output.size(1) * feature.size(1)))
-            elif args.dan_method=='DANN': 
+            elif args.dan_method=='DANN' or args.dan_method == 'MME': 
                 adnet_output = ad_net(feature)
 
             adnet_output = adnet_output.cpu().data.numpy()
@@ -465,8 +466,7 @@ def main():
     print('================================================')
 
     # Init Mean
-    if args.local_feat and not args.isTest:
-        
+    if args.local_feat and args.intra_gcn and args.inter_gcn and not args.isTest:        
         if args.use_cov:
             print('Init Mean and Cov...')
             Initialize_Mean_Cov(args, model, False)

@@ -8,10 +8,6 @@ import torch.nn.functional as F
 def Entropy(input_):
     return torch.sum(-input_ * torch.log(input_ + 1e-5), dim=1)
 
-def grl_hook(coeff):
-    def fun1(grad):
-        return - coeff * grad.clone()
-    return fun1
 
 def DANN(features, ad_net):
 
@@ -29,7 +25,7 @@ def DANN(features, ad_net):
 
     return nn.BCELoss()(ad_out, dc_target)
     
-def MME(features, coeff = 1):
+def MME_loss(features, coeff = 1):
     '''
     Paper Link : https://arxiv.org/pdf/1904.06487.pdf
     Github Link : https://github.com/VisionLearningGroup/SSDA_MME
@@ -38,6 +34,17 @@ def MME(features, coeff = 1):
     ad_out.register_hook(grl_hook(coeff))
     return ad_out
 
+def grl_hook(coeff):
+    def fun1(grad):
+        return - coeff * grad.clone()
+    return fun1
+
+def MME(model, feat, lamda=0.1, coeff=1.0):
+    feat.register_hook(grl_hook(coeff))
+    feat =  model.module.fc(feat)
+    feat = F.softmax(feat)
+    loss_adent = lamda * torch.mean(torch.sum(feat * (torch.log(feat + 1e-5)), 1))
+    return loss_adent
 
 def adentropy(feat, lamda=0.1):
     feat = F.softmax(feat)

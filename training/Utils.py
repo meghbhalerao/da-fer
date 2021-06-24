@@ -138,7 +138,6 @@ def Compute_Accuracy(args, pred, target, acc, prec, recall):
 
 def BulidModel(args):
     """Bulid Model."""
-
     if args.local_feat:
         if args.net == 'ResNet18':
             model = IR(18, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster,args.class_num)
