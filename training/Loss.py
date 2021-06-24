@@ -41,7 +41,7 @@ def grl_hook(coeff):
 
 def MME(model, feat, lamda=0.1, coeff=1.0):
     feat.register_hook(grl_hook(coeff))
-    feat =  model.module.fc(feat)
+    feat =  model.fc(feat)
     feat = F.softmax(feat)
     loss_adent = lamda * torch.mean(torch.sum(feat * (torch.log(feat + 1e-5)), 1))
     return loss_adent

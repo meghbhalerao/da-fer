@@ -143,6 +143,7 @@ def BulidModel(args):
             model = IR(18, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster,args.class_num)
         elif args.net == 'ResNet50':
             model = IR(50, args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster,args.class_num)
+            print("USING LOCAL FEATURES")
         elif args.net == 'VGGNet':
             model = VGG(args.intra_gcn, args.inter_gcn, args.rand_mat, args.all1_mat, args.use_cov, args.use_cluster, args.class_num)
         elif args.net == 'MobileNet':

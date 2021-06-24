@@ -145,7 +145,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
                 print(dan_loss_)
             elif args.dan_method == "MME":
                     dan_loss_  = MME(model, feat_target)
-                    dan_loss_.backward()
+                    #dan_loss_.backward()
                     if epoch >=1000:
                         a, b, _, _, pl_loss = do_fixmatch(f, data_target_,label_target,landmark_target,model,0.975,nn.CrossEntropyLoss(reduce='none'))
                         sum_ = sum_ + a
@@ -192,9 +192,9 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
             loss_.backward()
 
         optimizer.step()
-
-        if args.use_dan:
-            optimizer_ad.step()
+        if not args.dan_method == "MME":
+            if args.use_dan:
+                optimizer_ad.step()
 
         # Compute accuracy, precision and recall
         Compute_Accuracy(args, output.narrow(0, 0, data_source.size(0)), label_source, acc, prec, recall)
@@ -204,7 +204,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
         global_cls_loss.update(float(global_cls_loss_.cpu().data.item()))
         local_cls_loss.update(float(local_cls_loss_.cpu().data.item()) if args.local_feat else 0)
         afn_loss.update(float(afn_loss_.cpu().data.item()) if args.use_afn else 0)
-        dan_loss.update(float(dan_loss_.cpu().data.item()) if args.use_afn else 0)
+        dan_loss.update(float(dan_loss_.cpu().data.item()) if args.use_dan else 0)
 
         writer.add_scalar('Glocal_Cls_Loss', float(global_cls_loss_.cpu().data.item()), num_iter*(epoch-1)+batch_index)
         writer.add_scalar('Local_Cls_Loss', float(local_cls_loss_.cpu().data.item()) if args.local_feat else 0, num_iter*(epoch-1)+batch_index)
