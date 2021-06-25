@@ -119,7 +119,7 @@ def Train(args, model, ad_net, random_layer, train_source_dataloader, train_targ
         # Forward Propagation
         end = time.time()
         feature, output, loc_output = model(torch.cat((data_source, data_target), 0), torch.cat((landmark_source, landmark_target), 0), False)
-        feat_target = feature[0:args.train_batch,:]
+        feat_target = feature[args.train_batch:,:]
         #feat_target, out_target, loc_out_target = model(data_target, landmark_target, False)
         #feat_source, out_source, loc_out_source = model(data_source, landmark_source, False)
         #feature = torch.cat((feat_source,feat_target),0)
