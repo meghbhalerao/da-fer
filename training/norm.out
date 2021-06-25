@@ -1,0 +1,3257 @@
+2021-06-24 20:06:51.465196: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.11.0
+Log Name: raf2aisin_res50
+Output Path: .
+Backbone: ResNet50
+Resume Model: None
+CUDA_VISIBLE_DEVICES: 0
+================================================
+Use 112 * 112 Image
+SourceDataset: RAF
+TargetDataset: AISIN
+Train Batch Size: 32
+Test Batch Size: 32
+================================================
+Train Epoch: 100
+Learning Rate: 0.000100
+Momentum: 0.900000
+Weight Decay: 0.000100
+Use DAN Loss: MME
+Learning Rate(Adversarial Network): 0.001000
+================================================
+Number of classes : 2
+Use global feature and local feature.
+Use Mean.
+================================================
+Building Train and Test Dataloader...
+ train source dataset qty: 1395
+Dataset Distribution for 2 classes is:  [713, 682]
+ train target dataset qty: 9081
+Dataset Distribution for 2 classes is:  [1671, 7410]
+ test source dataset qty: 318
+Dataset Distribution for 2 classes is:  [158, 160]
+ test target dataset qty: 2541
+Dataset Distribution for 2 classes is:  [467, 2074]
+Done!
+================================================
+Building Model...
+USING LOCAL FEATURES
+No Resume Model
+Done!
+================================================
+Building Adversarial Network...
+Done!
+================================================
+Building Optimizer...
+Done!
+================================================
+Run Experiment...
+/home/megh/projects/fer/da-fer/training/Loss.py:46: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  feat = F.softmax(feat)
+TransferToTargetDomain.py:191: UserWarning: Anomaly Detection has been enabled. This mode will increase the runtime and should only be enabled for debugging.
+  with torch.autograd.detect_anomaly():
+
+    [Tain]: 
+    Epoch 1
+    Data Time 6.3950 (0.0226)
+    Batch Time 150.0769 (0.5303)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.8124 0.8124
+    Precision 0.8070 0.8184
+    Recall 0.8313 0.7927
+    F1 0.8190 0.8053
+    AdversarialNet Acc 0.4888 Acc_avg 0.8124 Prec_avg 0.8127 Recall_avg 0.8120 F1_avg 0.8121
+    Total Loss 0.7362 Global Cls Loss 0.4027 Local Cls Loss 0.4020 AFN Loss 0.0000 DAN Loss -0.0685
+
+    [Test (Source Domain)]: 
+    Data Time 0.0551 (0.0055)
+    Batch Time 2.0416 (0.2042)
+Accuracy 0.7704 0.7704
+    Precision 0.7607 0.7806
+    Recall 0.7848 0.7562
+    F1 0.7726 0.7683
+    Acc_avg 0.7704 Prec_avg 0.7707 Recall_avg 0.7705 F1_avg 0.7704
+    Loss 0.5592
+
+    [Test (Target Domain)]: 
+    Data Time 0.2113 (0.0026)
+    Batch Time 13.4486 (0.1681)
+Accuracy 0.2767 0.2767
+    Precision 0.1941 0.8933
+    Recall 0.9315 0.1292
+    F1 0.3213 0.2258
+    Acc_avg 0.2767 Prec_avg 0.5437 Recall_avg 0.5303 F1_avg 0.2735
+    Loss 1.5184
+[Save] Best Recall: 0.5303.
+[Save] Best Accuracy: 0.2767.
+
+    [Tain]: 
+    Epoch 2
+    Data Time 6.6136 (0.0234)
+    Batch Time 149.3576 (0.5278)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9148 0.9148
+    Precision 0.9139 0.9156
+    Recall 0.9199 0.9094
+    F1 0.9169 0.9125
+    AdversarialNet Acc 0.4896 Acc_avg 0.9148 Prec_avg 0.9148 Recall_avg 0.9146 F1_avg 0.9147
+    Total Loss 0.3596 Global Cls Loss 0.2120 Local Cls Loss 0.2152 AFN Loss 0.0000 DAN Loss -0.0677
+
+    [Test (Source Domain)]: 
+    Data Time 0.0327 (0.0033)
+    Batch Time 1.6822 (0.1682)
+Accuracy 0.7893 0.7893
+    Precision 0.7974 0.7818
+    Recall 0.7722 0.8063
+    F1 0.7846 0.7938
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7892 F1_avg 0.7892
+    Loss 0.5745
+
+    [Test (Target Domain)]: 
+    Data Time 0.2601 (0.0033)
+    Batch Time 15.0395 (0.1880)
+Accuracy 0.5746 0.5746
+    Precision 0.2496 0.8776
+    Recall 0.6552 0.5564
+    F1 0.3615 0.6810
+    Acc_avg 0.5746 Prec_avg 0.5636 Recall_avg 0.6058 F1_avg 0.5213
+    Loss 0.8444
+[Save] Best Recall: 0.6058.
+[Save] Best Accuracy: 0.5746.
+
+    [Tain]: 
+    Epoch 3
+    Data Time 6.3250 (0.0223)
+    Batch Time 147.9249 (0.5227)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9544 0.9544
+    Precision 0.9542 0.9546
+    Recall 0.9569 0.9518
+    F1 0.9555 0.9532
+    AdversarialNet Acc 0.5004 Acc_avg 0.9544 Prec_avg 0.9544 Recall_avg 0.9543 F1_avg 0.9544
+    Total Loss 0.1912 Global Cls Loss 0.1282 Local Cls Loss 0.1300 AFN Loss 0.0000 DAN Loss -0.0670
+
+    [Test (Source Domain)]: 
+    Data Time 0.0308 (0.0031)
+    Batch Time 1.7485 (0.1749)
+Accuracy 0.7767 0.7767
+    Precision 0.7544 0.8027
+    Recall 0.8165 0.7375
+    F1 0.7842 0.7687
+    Acc_avg 0.7767 Prec_avg 0.7786 Recall_avg 0.7770 F1_avg 0.7765
+    Loss 0.6747
+
+    [Test (Target Domain)]: 
+    Data Time 0.2142 (0.0027)
+    Batch Time 13.6508 (0.1706)
+Accuracy 0.4132 0.4132
+    Precision 0.2156 0.8934
+    Recall 0.8308 0.3192
+    F1 0.3423 0.4703
+    Acc_avg 0.4132 Prec_avg 0.5545 Recall_avg 0.5750 F1_avg 0.4063
+    Loss 1.2714
+
+    [Tain]: 
+    Epoch 4
+    Data Time 7.3222 (0.0259)
+    Batch Time 147.4747 (0.5211)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9696 0.9696
+    Precision 0.9680 0.9713
+    Recall 0.9728 0.9663
+    F1 0.9704 0.9688
+    AdversarialNet Acc 0.4984 Acc_avg 0.9696 Prec_avg 0.9697 Recall_avg 0.9696 F1_avg 0.9696
+    Total Loss 0.0981 Global Cls Loss 0.0819 Local Cls Loss 0.0827 AFN Loss 0.0000 DAN Loss -0.0665
+
+    [Test (Source Domain)]: 
+    Data Time 0.0314 (0.0031)
+    Batch Time 1.7494 (0.1749)
+Accuracy 0.7704 0.7704
+    Precision 0.7545 0.7881
+    Recall 0.7975 0.7438
+    F1 0.7754 0.7653
+    Acc_avg 0.7704 Prec_avg 0.7713 Recall_avg 0.7706 F1_avg 0.7703
+    Loss 0.7473
+
+    [Test (Target Domain)]: 
+    Data Time 0.2218 (0.0028)
+    Batch Time 13.6915 (0.1711)
+Accuracy 0.2645 0.2645
+    Precision 0.1947 0.9184
+    Recall 0.9572 0.1085
+    F1 0.3236 0.1940
+    Acc_avg 0.2645 Prec_avg 0.5565 Recall_avg 0.5328 F1_avg 0.2588
+    Loss 2.3665
+
+    [Tain]: 
+    Epoch 5
+    Data Time 7.4834 (0.0264)
+    Batch Time 143.7622 (0.5080)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9810 0.9810
+    Precision 0.9804 0.9817
+    Recall 0.9825 0.9795
+    F1 0.9814 0.9806
+    AdversarialNet Acc 0.5027 Acc_avg 0.9810 Prec_avg 0.9810 Recall_avg 0.9810 F1_avg 0.9810
+    Total Loss 0.0467 Global Cls Loss 0.0553 Local Cls Loss 0.0574 AFN Loss 0.0000 DAN Loss -0.0660
+
+    [Test (Source Domain)]: 
+    Data Time 0.0313 (0.0031)
+    Batch Time 1.7397 (0.1740)
+Accuracy 0.7767 0.7767
+    Precision 0.7771 0.7764
+    Recall 0.7722 0.7812
+    F1 0.7746 0.7788
+    Acc_avg 0.7767 Prec_avg 0.7767 Recall_avg 0.7767 F1_avg 0.7767
+    Loss 0.8538
+
+    [Test (Target Domain)]: 
+    Data Time 0.2247 (0.0028)
+    Batch Time 13.5259 (0.1691)
+Accuracy 0.6068 0.6068
+    Precision 0.2642 0.8804
+    Recall 0.6381 0.5998
+    F1 0.3737 0.7135
+    Acc_avg 0.6068 Prec_avg 0.5723 Recall_avg 0.6190 F1_avg 0.5436
+    Loss 0.9544
+[Save] Best Recall: 0.6190.
+[Save] Best Accuracy: 0.6068.
+
+    [Tain]: 
+    Epoch 6
+    Data Time 6.9022 (0.0244)
+    Batch Time 143.5950 (0.5074)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9872 0.9872
+    Precision 0.9856 0.9889
+    Recall 0.9894 0.9848
+    F1 0.9875 0.9868
+    AdversarialNet Acc 0.4895 Acc_avg 0.9872 Prec_avg 0.9872 Recall_avg 0.9871 F1_avg 0.9872
+    Total Loss 0.0085 Global Cls Loss 0.0368 Local Cls Loss 0.0372 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0314 (0.0031)
+    Batch Time 1.6965 (0.1696)
+Accuracy 0.8019 0.8019
+    Precision 0.7778 0.8299
+    Recall 0.8418 0.7625
+    F1 0.8085 0.7948
+    Acc_avg 0.8019 Prec_avg 0.8039 Recall_avg 0.8021 F1_avg 0.8016
+    Loss 0.9133
+
+    [Test (Target Domain)]: 
+    Data Time 0.2176 (0.0027)
+    Batch Time 13.3405 (0.1668)
+Accuracy 0.5588 0.5588
+    Precision 0.2485 0.8840
+    Recall 0.6916 0.5289
+    F1 0.3656 0.6618
+    Acc_avg 0.5588 Prec_avg 0.5662 Recall_avg 0.6103 F1_avg 0.5137
+    Loss 1.1910
+
+    [Tain]: 
+    Epoch 7
+    Data Time 7.0955 (0.0251)
+    Batch Time 144.3414 (0.5100)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9880 0.9880
+    Precision 0.9868 0.9892
+    Recall 0.9896 0.9863
+    F1 0.9882 0.9877
+    AdversarialNet Acc 0.4968 Acc_avg 0.9880 Prec_avg 0.9880 Recall_avg 0.9879 F1_avg 0.9880
+    Total Loss 0.0073 Global Cls Loss 0.0359 Local Cls Loss 0.0368 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0263 (0.0026)
+    Batch Time 1.6964 (0.1696)
+Accuracy 0.7893 0.7893
+    Precision 0.7514 0.8394
+    Recall 0.8608 0.7188
+    F1 0.8024 0.7744
+    Acc_avg 0.7893 Prec_avg 0.7954 Recall_avg 0.7898 F1_avg 0.7884
+    Loss 0.8553
+
+    [Test (Target Domain)]: 
+    Data Time 0.2115 (0.0026)
+    Batch Time 13.3703 (0.1671)
+Accuracy 0.3727 0.3727
+    Precision 0.2091 0.8974
+    Recall 0.8672 0.2613
+    F1 0.3369 0.4048
+    Acc_avg 0.3727 Prec_avg 0.5532 Recall_avg 0.5643 F1_avg 0.3709
+    Loss 1.6699
+
+    [Tain]: 
+    Epoch 8
+    Data Time 7.3834 (0.0261)
+    Batch Time 144.1947 (0.5095)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9920 0.9920
+    Precision 0.9920 0.9921
+    Recall 0.9924 0.9917
+    F1 0.9922 0.9919
+    AdversarialNet Acc 0.4928 Acc_avg 0.9920 Prec_avg 0.9921 Recall_avg 0.9920 F1_avg 0.9920
+    Total Loss -0.0191 Global Cls Loss 0.0228 Local Cls Loss 0.0232 AFN Loss 0.0000 DAN Loss -0.0652
+
+    [Test (Source Domain)]: 
+    Data Time 0.0349 (0.0035)
+    Batch Time 1.7230 (0.1723)
+Accuracy 0.7610 0.7610
+    Precision 0.7595 0.7625
+    Recall 0.7595 0.7625
+    F1 0.7595 0.7625
+    Acc_avg 0.7610 Prec_avg 0.7610 Recall_avg 0.7610 F1_avg 0.7610
+    Loss 0.8659
+
+    [Test (Target Domain)]: 
+    Data Time 0.2189 (0.0027)
+    Batch Time 13.3912 (0.1674)
+Accuracy 0.3628 0.3628
+    Precision 0.2058 0.8902
+    Recall 0.8630 0.2502
+    F1 0.3324 0.3907
+    Acc_avg 0.3628 Prec_avg 0.5480 Recall_avg 0.5566 F1_avg 0.3615
+    Loss 1.8561
+
+    [Tain]: 
+    Epoch 9
+    Data Time 7.2093 (0.0255)
+    Batch Time 143.5168 (0.5071)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9915 0.9915
+    Precision 0.9922 0.9907
+    Recall 0.9912 0.9918
+    F1 0.9917 0.9913
+    AdversarialNet Acc 0.5028 Acc_avg 0.9915 Prec_avg 0.9915 Recall_avg 0.9915 F1_avg 0.9915
+    Total Loss -0.0158 Global Cls Loss 0.0245 Local Cls Loss 0.0247 AFN Loss 0.0000 DAN Loss -0.0650
+
+    [Test (Source Domain)]: 
+    Data Time 0.0305 (0.0030)
+    Batch Time 1.7408 (0.1741)
+Accuracy 0.7767 0.7767
+    Precision 0.7636 0.7908
+    Recall 0.7975 0.7562
+    F1 0.7802 0.7732
+    Acc_avg 0.7767 Prec_avg 0.7772 Recall_avg 0.7769 F1_avg 0.7767
+    Loss 0.9112
+
+    [Test (Target Domain)]: 
+    Data Time 0.2227 (0.0028)
+    Batch Time 13.5233 (0.1690)
+Accuracy 0.3231 0.3231
+    Precision 0.1936 0.8569
+    Recall 0.8480 0.2049
+    F1 0.3153 0.3307
+    Acc_avg 0.3231 Prec_avg 0.5252 Recall_avg 0.5264 F1_avg 0.3230
+    Loss 1.9232
+
+    [Tain]: 
+    Epoch 10
+    Data Time 6.9855 (0.0247)
+    Batch Time 144.1312 (0.5093)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9928 0.9928
+    Precision 0.9930 0.9926
+    Recall 0.9928 0.9928
+    F1 0.9929 0.9927
+    AdversarialNet Acc 0.5161 Acc_avg 0.9928 Prec_avg 0.9928 Recall_avg 0.9928 F1_avg 0.9928
+    Total Loss -0.0255 Global Cls Loss 0.0196 Local Cls Loss 0.0198 AFN Loss 0.0000 DAN Loss -0.0649
+
+    [Test (Source Domain)]: 
+    Data Time 0.0306 (0.0031)
+    Batch Time 1.7457 (0.1746)
+Accuracy 0.7547 0.7547
+    Precision 0.7632 0.7470
+    Recall 0.7342 0.7750
+    F1 0.7484 0.7607
+    Acc_avg 0.7547 Prec_avg 0.7551 Recall_avg 0.7546 F1_avg 0.7546
+    Loss 0.9960
+
+    [Test (Target Domain)]: 
+    Data Time 0.2220 (0.0028)
+    Batch Time 13.5358 (0.1692)
+Accuracy 0.3388 0.3388
+    Precision 0.2057 0.9104
+    Recall 0.9079 0.2107
+    F1 0.3354 0.3422
+    Acc_avg 0.3388 Prec_avg 0.5581 Recall_avg 0.5593 F1_avg 0.3388
+    Loss 2.4629
+
+    [Tain]: 
+    Epoch 11
+    Data Time 7.4040 (0.0262)
+    Batch Time 144.5317 (0.5107)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9954 0.9954
+    Precision 0.9946 0.9962
+    Recall 0.9963 0.9944
+    F1 0.9954 0.9953
+    AdversarialNet Acc 0.4998 Acc_avg 0.9954 Prec_avg 0.9954 Recall_avg 0.9953 F1_avg 0.9954
+    Total Loss -0.0345 Global Cls Loss 0.0151 Local Cls Loss 0.0152 AFN Loss 0.0000 DAN Loss -0.0647
+
+    [Test (Source Domain)]: 
+    Data Time 0.0296 (0.0030)
+    Batch Time 1.8038 (0.1804)
+Accuracy 0.8113 0.8113
+    Precision 0.8025 0.8205
+    Recall 0.8228 0.8000
+    F1 0.8125 0.8101
+    Acc_avg 0.8113 Prec_avg 0.8115 Recall_avg 0.8114 F1_avg 0.8113
+    Loss 0.9192
+
+    [Test (Target Domain)]: 
+    Data Time 0.2221 (0.0028)
+    Batch Time 13.2711 (0.1659)
+Accuracy 0.3475 0.3475
+    Precision 0.1954 0.8549
+    Recall 0.8180 0.2416
+    F1 0.3154 0.3767
+    Acc_avg 0.3475 Prec_avg 0.5252 Recall_avg 0.5298 F1_avg 0.3461
+    Loss 2.1586
+
+    [Tain]: 
+    Epoch 12
+    Data Time 6.9171 (0.0244)
+    Batch Time 143.6524 (0.5076)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9970 0.9970
+    Precision 0.9968 0.9973
+    Recall 0.9974 0.9966
+    F1 0.9971 0.9970
+    AdversarialNet Acc 0.4986 Acc_avg 0.9970 Prec_avg 0.9970 Recall_avg 0.9970 F1_avg 0.9970
+    Total Loss -0.0462 Global Cls Loss 0.0093 Local Cls Loss 0.0089 AFN Loss 0.0000 DAN Loss -0.0644
+
+    [Test (Source Domain)]: 
+    Data Time 0.0304 (0.0030)
+    Batch Time 1.6944 (0.1694)
+Accuracy 0.8208 0.8208
+    Precision 0.8137 0.8280
+    Recall 0.8291 0.8125
+    F1 0.8213 0.8202
+    Acc_avg 0.8208 Prec_avg 0.8208 Recall_avg 0.8208 F1_avg 0.8208
+    Loss 0.9453
+
+    [Test (Target Domain)]: 
+    Data Time 0.2195 (0.0027)
+    Batch Time 13.4004 (0.1675)
+Accuracy 0.3963 0.3963
+    Precision 0.2018 0.8590
+    Recall 0.7730 0.3115
+    F1 0.3200 0.4572
+    Acc_avg 0.3963 Prec_avg 0.5304 Recall_avg 0.5422 F1_avg 0.3886
+    Loss 1.8962
+
+    [Tain]: 
+    Epoch 13
+    Data Time 7.1651 (0.0253)
+    Batch Time 145.3217 (0.5135)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9962 0.9962
+    Precision 0.9961 0.9964
+    Recall 0.9966 0.9959
+    F1 0.9963 0.9961
+    AdversarialNet Acc 0.5010 Acc_avg 0.9962 Prec_avg 0.9962 Recall_avg 0.9962 F1_avg 0.9962
+    Total Loss -0.0413 Global Cls Loss 0.0114 Local Cls Loss 0.0117 AFN Loss 0.0000 DAN Loss -0.0644
+
+    [Test (Source Domain)]: 
+    Data Time 0.0321 (0.0032)
+    Batch Time 1.7776 (0.1778)
+Accuracy 0.7925 0.7925
+    Precision 0.7987 0.7866
+    Recall 0.7785 0.8063
+    F1 0.7885 0.7963
+    Acc_avg 0.7925 Prec_avg 0.7926 Recall_avg 0.7924 F1_avg 0.7924
+    Loss 0.9794
+
+    [Test (Target Domain)]: 
+    Data Time 0.2217 (0.0028)
+    Batch Time 13.5209 (0.1690)
+Accuracy 0.3916 0.3916
+    Precision 0.2001 0.8558
+    Recall 0.7709 0.3062
+    F1 0.3177 0.4510
+    Acc_avg 0.3916 Prec_avg 0.5280 Recall_avg 0.5385 F1_avg 0.3844
+    Loss 1.8823
+
+    [Tain]: 
+    Epoch 14
+    Data Time 7.1404 (0.0252)
+    Batch Time 144.3184 (0.5100)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9979 0.9979
+    Precision 0.9978 0.9980
+    Recall 0.9981 0.9977
+    F1 0.9979 0.9979
+    AdversarialNet Acc 0.5022 Acc_avg 0.9979 Prec_avg 0.9979 Recall_avg 0.9979 F1_avg 0.9979
+    Total Loss -0.0500 Global Cls Loss 0.0072 Local Cls Loss 0.0071 AFN Loss 0.0000 DAN Loss -0.0643
+
+    [Test (Source Domain)]: 
+    Data Time 0.0273 (0.0027)
+    Batch Time 1.7070 (0.1707)
+Accuracy 0.7893 0.7893
+    Precision 0.7826 0.7962
+    Recall 0.7975 0.7812
+    F1 0.7900 0.7886
+    Acc_avg 0.7893 Prec_avg 0.7894 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9363
+
+    [Test (Target Domain)]: 
+    Data Time 0.2181 (0.0027)
+    Batch Time 13.4710 (0.1684)
+Accuracy 0.4018 0.4018
+    Precision 0.1883 0.8251
+    Recall 0.6809 0.3390
+    F1 0.2950 0.4805
+    Acc_avg 0.4018 Prec_avg 0.5067 Recall_avg 0.5100 F1_avg 0.3878
+    Loss 1.7986
+
+    [Tain]: 
+    Epoch 15
+    Data Time 7.4791 (0.0264)
+    Batch Time 145.8920 (0.5155)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9986 0.9986
+    Precision 0.9985 0.9986
+    Recall 0.9987 0.9984
+    F1 0.9986 0.9985
+    AdversarialNet Acc 0.5086 Acc_avg 0.9986 Prec_avg 0.9986 Recall_avg 0.9986 F1_avg 0.9986
+    Total Loss -0.0544 Global Cls Loss 0.0049 Local Cls Loss 0.0048 AFN Loss 0.0000 DAN Loss -0.0641
+
+    [Test (Source Domain)]: 
+    Data Time 0.0277 (0.0028)
+    Batch Time 1.6742 (0.1674)
+Accuracy 0.8019 0.8019
+    Precision 0.7914 0.8129
+    Recall 0.8165 0.7875
+    F1 0.8037 0.8000
+    Acc_avg 0.8019 Prec_avg 0.8022 Recall_avg 0.8020 F1_avg 0.8019
+    Loss 1.0347
+
+    [Test (Target Domain)]: 
+    Data Time 0.2140 (0.0027)
+    Batch Time 13.3781 (0.1672)
+Accuracy 0.4660 0.4660
+    Precision 0.1808 0.8126
+    Recall 0.5396 0.4494
+    F1 0.2708 0.5787
+    Acc_avg 0.4660 Prec_avg 0.4967 Recall_avg 0.4945 F1_avg 0.4248
+    Loss 1.4515
+
+    [Tain]: 
+    Epoch 16
+    Data Time 7.3305 (0.0259)
+    Batch Time 145.7306 (0.5149)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9983 0.9983
+    Precision 0.9985 0.9982
+    Recall 0.9983 0.9984
+    F1 0.9984 0.9983
+    AdversarialNet Acc 0.5052 Acc_avg 0.9983 Prec_avg 0.9983 Recall_avg 0.9983 F1_avg 0.9983
+    Total Loss -0.0549 Global Cls Loss 0.0048 Local Cls Loss 0.0043 AFN Loss 0.0000 DAN Loss -0.0639
+
+    [Test (Source Domain)]: 
+    Data Time 0.0335 (0.0034)
+    Batch Time 1.7022 (0.1702)
+Accuracy 0.8019 0.8019
+    Precision 0.7746 0.8345
+    Recall 0.8481 0.7562
+    F1 0.8097 0.7934
+    Acc_avg 0.8019 Prec_avg 0.8045 Recall_avg 0.8022 F1_avg 0.8016
+    Loss 1.0717
+
+    [Test (Target Domain)]: 
+    Data Time 0.2214 (0.0028)
+    Batch Time 13.4749 (0.1684)
+Accuracy 0.4652 0.4652
+    Precision 0.2035 0.8447
+    Recall 0.6552 0.4224
+    F1 0.3105 0.5632
+    Acc_avg 0.4652 Prec_avg 0.5241 Recall_avg 0.5388 F1_avg 0.4368
+    Loss 1.6067
+
+    [Tain]: 
+    Epoch 17
+    Data Time 7.0301 (0.0248)
+    Batch Time 144.2460 (0.5097)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9989 0.9989
+    Precision 0.9987 0.9991
+    Recall 0.9991 0.9986
+    F1 0.9989 0.9989
+    AdversarialNet Acc 0.5088 Acc_avg 0.9989 Prec_avg 0.9989 Recall_avg 0.9989 F1_avg 0.9989
+    Total Loss -0.0554 Global Cls Loss 0.0043 Local Cls Loss 0.0041 AFN Loss 0.0000 DAN Loss -0.0638
+
+    [Test (Source Domain)]: 
+    Data Time 0.0387 (0.0039)
+    Batch Time 1.7089 (0.1709)
+Accuracy 0.7830 0.7830
+    Precision 0.7633 0.8054
+    Recall 0.8165 0.7500
+    F1 0.7890 0.7767
+    Acc_avg 0.7830 Prec_avg 0.7843 Recall_avg 0.7832 F1_avg 0.7828
+    Loss 1.1160
+
+    [Test (Target Domain)]: 
+    Data Time 0.2172 (0.0027)
+    Batch Time 13.3255 (0.1666)
+Accuracy 0.4510 0.4510
+    Precision 0.2160 0.8743
+    Recall 0.7559 0.3824
+    F1 0.3360 0.5320
+    Acc_avg 0.4510 Prec_avg 0.5452 Recall_avg 0.5691 F1_avg 0.4340
+    Loss 1.7121
+
+    [Tain]: 
+    Epoch 18
+    Data Time 6.9157 (0.0244)
+    Batch Time 146.5910 (0.5180)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9962 0.9962
+    Precision 0.9955 0.9971
+    Recall 0.9972 0.9953
+    F1 0.9963 0.9962
+    AdversarialNet Acc 0.5052 Acc_avg 0.9962 Prec_avg 0.9963 Recall_avg 0.9962 F1_avg 0.9962
+    Total Loss -0.0417 Global Cls Loss 0.0111 Local Cls Loss 0.0112 AFN Loss 0.0000 DAN Loss -0.0640
+
+    [Test (Source Domain)]: 
+    Data Time 0.0313 (0.0031)
+    Batch Time 1.7162 (0.1716)
+Accuracy 0.7862 0.7862
+    Precision 0.7848 0.7875
+    Recall 0.7848 0.7875
+    F1 0.7848 0.7875
+    Acc_avg 0.7862 Prec_avg 0.7862 Recall_avg 0.7862 F1_avg 0.7862
+    Loss 0.9749
+
+    [Test (Target Domain)]: 
+    Data Time 0.2277 (0.0028)
+    Batch Time 13.5501 (0.1694)
+Accuracy 0.3420 0.3420
+    Precision 0.1940 0.8514
+    Recall 0.8180 0.2348
+    F1 0.3136 0.3681
+    Acc_avg 0.3420 Prec_avg 0.5227 Recall_avg 0.5264 F1_avg 0.3409
+    Loss 2.3932
+
+    [Tain]: 
+    Epoch 19
+    Data Time 7.1310 (0.0252)
+    Batch Time 145.3503 (0.5136)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9957 0.9957
+    Precision 0.9963 0.9951
+    Recall 0.9952 0.9962
+    F1 0.9958 0.9956
+    AdversarialNet Acc 0.5046 Acc_avg 0.9957 Prec_avg 0.9957 Recall_avg 0.9957 F1_avg 0.9957
+    Total Loss -0.0433 Global Cls Loss 0.0107 Local Cls Loss 0.0102 AFN Loss 0.0000 DAN Loss -0.0642
+
+    [Test (Source Domain)]: 
+    Data Time 0.0303 (0.0030)
+    Batch Time 1.7305 (0.1731)
+Accuracy 0.7862 0.7862
+    Precision 0.7557 0.8239
+    Recall 0.8418 0.7312
+    F1 0.7964 0.7748
+    Acc_avg 0.7862 Prec_avg 0.7898 Recall_avg 0.7865 F1_avg 0.7856
+    Loss 1.0678
+
+    [Test (Target Domain)]: 
+    Data Time 0.2203 (0.0028)
+    Batch Time 13.4342 (0.1679)
+Accuracy 0.4392 0.4392
+    Precision 0.2025 0.8485
+    Recall 0.6981 0.3809
+    F1 0.3139 0.5258
+    Acc_avg 0.4392 Prec_avg 0.5255 Recall_avg 0.5395 F1_avg 0.4199
+    Loss 1.6618
+
+    [Tain]: 
+    Epoch 20
+    Data Time 6.9671 (0.0246)
+    Batch Time 146.6605 (0.5182)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.001
+Accuracy 0.9990 0.9990
+    Precision 0.9989 0.9991
+    Recall 0.9991 0.9989
+    F1 0.9990 0.9990
+    AdversarialNet Acc 0.4961 Acc_avg 0.9990 Prec_avg 0.9990 Recall_avg 0.9990 F1_avg 0.9990
+    Total Loss -0.0561 Global Cls Loss 0.0041 Local Cls Loss 0.0039 AFN Loss 0.0000 DAN Loss -0.0641
+
+    [Test (Source Domain)]: 
+    Data Time 0.0269 (0.0027)
+    Batch Time 1.6921 (0.1692)
+Accuracy 0.8145 0.8145
+    Precision 0.8278 0.8024
+    Recall 0.7911 0.8375
+    F1 0.8091 0.8196
+    Acc_avg 0.8145 Prec_avg 0.8151 Recall_avg 0.8143 F1_avg 0.8143
+    Loss 1.0124
+
+    [Test (Target Domain)]: 
+    Data Time 0.2143 (0.0027)
+    Batch Time 13.4244 (0.1678)
+Accuracy 0.3739 0.3739
+    Precision 0.1898 0.8313
+    Recall 0.7366 0.2922
+    F1 0.3019 0.4324
+    Acc_avg 0.3739 Prec_avg 0.5106 Recall_avg 0.5144 F1_avg 0.3671
+    Loss 2.1096
+
+    [Tain]: 
+    Epoch 21
+    Data Time 6.8584 (0.0242)
+    Batch Time 144.5644 (0.5108)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9993 0.9993
+    Precision 0.9991 0.9995
+    Recall 0.9996 0.9991
+    F1 0.9994 0.9993
+    AdversarialNet Acc 0.4946 Acc_avg 0.9993 Prec_avg 0.9993 Recall_avg 0.9993 F1_avg 0.9993
+    Total Loss -0.0583 Global Cls Loss 0.0030 Local Cls Loss 0.0027 AFN Loss 0.0000 DAN Loss -0.0640
+
+    [Test (Source Domain)]: 
+    Data Time 0.0331 (0.0033)
+    Batch Time 1.6602 (0.1660)
+Accuracy 0.7862 0.7862
+    Precision 0.7885 0.7840
+    Recall 0.7785 0.7937
+    F1 0.7834 0.7888
+    Acc_avg 0.7862 Prec_avg 0.7862 Recall_avg 0.7861 F1_avg 0.7861
+    Loss 1.0618
+
+    [Test (Target Domain)]: 
+    Data Time 0.2181 (0.0027)
+    Batch Time 13.3546 (0.1669)
+Accuracy 0.4329 0.4329
+    Precision 0.1882 0.8233
+    Recall 0.6296 0.3886
+    F1 0.2898 0.5280
+    Acc_avg 0.4329 Prec_avg 0.5058 Recall_avg 0.5091 F1_avg 0.4089
+    Loss 1.6024
+
+    [Tain]: 
+    Epoch 22
+    Data Time 7.0294 (0.0248)
+    Batch Time 144.0286 (0.5089)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 1.0000 0.9998
+    Recall 0.9998 1.0000
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.4999 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0610 Global Cls Loss 0.0016 Local Cls Loss 0.0013 AFN Loss 0.0000 DAN Loss -0.0639
+
+    [Test (Source Domain)]: 
+    Data Time 0.0289 (0.0029)
+    Batch Time 1.6973 (0.1697)
+Accuracy 0.7862 0.7862
+    Precision 0.7744 0.7987
+    Recall 0.8038 0.7688
+    F1 0.7888 0.7834
+    Acc_avg 0.7862 Prec_avg 0.7865 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9376
+
+    [Test (Target Domain)]: 
+    Data Time 0.2178 (0.0027)
+    Batch Time 13.3442 (0.1668)
+Accuracy 0.4628 0.4628
+    Precision 0.2026 0.8438
+    Recall 0.6552 0.4195
+    F1 0.3096 0.5604
+    Acc_avg 0.4628 Prec_avg 0.5232 Recall_avg 0.5374 F1_avg 0.4350
+    Loss 1.5517
+
+    [Tain]: 
+    Epoch 23
+    Data Time 7.1195 (0.0252)
+    Batch Time 144.5719 (0.5109)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9997 0.9997
+    Precision 0.9994 1.0000
+    Recall 1.0000 0.9993
+    F1 0.9997 0.9997
+    AdversarialNet Acc 0.5089 Acc_avg 0.9997 Prec_avg 0.9997 Recall_avg 0.9997 F1_avg 0.9997
+    Total Loss -0.0610 Global Cls Loss 0.0017 Local Cls Loss 0.0013 AFN Loss 0.0000 DAN Loss -0.0640
+
+    [Test (Source Domain)]: 
+    Data Time 0.0297 (0.0030)
+    Batch Time 1.7390 (0.1739)
+Accuracy 0.8019 0.8019
+    Precision 0.8025 0.8012
+    Recall 0.7975 0.8063
+    F1 0.8000 0.8037
+    Acc_avg 0.8019 Prec_avg 0.8019 Recall_avg 0.8019 F1_avg 0.8019
+    Loss 0.9850
+
+    [Test (Target Domain)]: 
+    Data Time 0.2062 (0.0026)
+    Batch Time 13.3187 (0.1665)
+Accuracy 0.4793 0.4793
+    Precision 0.1990 0.8356
+    Recall 0.6060 0.4508
+    F1 0.2996 0.5857
+    Acc_avg 0.4793 Prec_avg 0.5173 Recall_avg 0.5284 F1_avg 0.4426
+    Loss 1.4122
+
+    [Tain]: 
+    Epoch 24
+    Data Time 6.9553 (0.0246)
+    Batch Time 146.1833 (0.5165)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9997 0.9997
+    Precision 0.9998 0.9995
+    Recall 0.9996 0.9998
+    F1 0.9997 0.9997
+    AdversarialNet Acc 0.5013 Acc_avg 0.9997 Prec_avg 0.9997 Recall_avg 0.9997 F1_avg 0.9997
+    Total Loss -0.0614 Global Cls Loss 0.0015 Local Cls Loss 0.0011 AFN Loss 0.0000 DAN Loss -0.0640
+
+    [Test (Source Domain)]: 
+    Data Time 0.0292 (0.0029)
+    Batch Time 1.6953 (0.1695)
+Accuracy 0.7956 0.7956
+    Precision 0.7962 0.7950
+    Recall 0.7911 0.8000
+    F1 0.7937 0.7975
+    Acc_avg 0.7956 Prec_avg 0.7956 Recall_avg 0.7956 F1_avg 0.7956
+    Loss 0.9836
+
+    [Test (Target Domain)]: 
+    Data Time 0.2223 (0.0028)
+    Batch Time 13.4857 (0.1686)
+Accuracy 0.4935 0.4935
+    Precision 0.2113 0.8510
+    Recall 0.6424 0.4600
+    F1 0.3180 0.5972
+    Acc_avg 0.4935 Prec_avg 0.5311 Recall_avg 0.5512 F1_avg 0.4576
+    Loss 1.4465
+
+    [Tain]: 
+    Epoch 25
+    Data Time 7.0415 (0.0249)
+    Batch Time 145.5339 (0.5143)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5072 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0621 Global Cls Loss 0.0010 Local Cls Loss 0.0008 AFN Loss 0.0000 DAN Loss -0.0639
+
+    [Test (Source Domain)]: 
+    Data Time 0.0296 (0.0030)
+    Batch Time 1.7621 (0.1762)
+Accuracy 0.8050 0.8050
+    Precision 0.8000 0.8101
+    Recall 0.8101 0.8000
+    F1 0.8050 0.8050
+    Acc_avg 0.8050 Prec_avg 0.8051 Recall_avg 0.8051 F1_avg 0.8050
+    Loss 0.9812
+
+    [Test (Target Domain)]: 
+    Data Time 0.2255 (0.0028)
+    Batch Time 13.4700 (0.1684)
+Accuracy 0.4451 0.4451
+    Precision 0.1999 0.8423
+    Recall 0.6724 0.3939
+    F1 0.3081 0.5368
+    Acc_avg 0.4451 Prec_avg 0.5211 Recall_avg 0.5332 F1_avg 0.4225
+    Loss 1.6280
+
+    [Tain]: 
+    Epoch 26
+    Data Time 7.0422 (0.0249)
+    Batch Time 145.0291 (0.5125)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9992 0.9992
+    Precision 0.9991 0.9993
+    Recall 0.9994 0.9991
+    F1 0.9992 0.9992
+    AdversarialNet Acc 0.5157 Acc_avg 0.9992 Prec_avg 0.9992 Recall_avg 0.9992 F1_avg 0.9992
+    Total Loss -0.0574 Global Cls Loss 0.0040 Local Cls Loss 0.0028 AFN Loss 0.0000 DAN Loss -0.0642
+
+    [Test (Source Domain)]: 
+    Data Time 0.0289 (0.0029)
+    Batch Time 1.6907 (0.1691)
+Accuracy 0.8050 0.8050
+    Precision 0.8000 0.8101
+    Recall 0.8101 0.8000
+    F1 0.8050 0.8050
+    Acc_avg 0.8050 Prec_avg 0.8051 Recall_avg 0.8051 F1_avg 0.8050
+    Loss 1.0171
+
+    [Test (Target Domain)]: 
+    Data Time 0.2315 (0.0029)
+    Batch Time 13.2833 (0.1660)
+Accuracy 0.4132 0.4132
+    Precision 0.2006 0.8508
+    Recall 0.7345 0.3409
+    F1 0.3151 0.4867
+    Acc_avg 0.4132 Prec_avg 0.5257 Recall_avg 0.5377 F1_avg 0.4009
+    Loss 1.9683
+
+    [Tain]: 
+    Epoch 27
+    Data Time 7.2147 (0.0255)
+    Batch Time 144.0834 (0.5091)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5171 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0624 Global Cls Loss 0.0010 Local Cls Loss 0.0007 AFN Loss 0.0000 DAN Loss -0.0641
+
+    [Test (Source Domain)]: 
+    Data Time 0.0289 (0.0029)
+    Batch Time 1.6867 (0.1687)
+Accuracy 0.7987 0.7987
+    Precision 0.7901 0.8077
+    Recall 0.8101 0.7875
+    F1 0.8000 0.7975
+    Acc_avg 0.7987 Prec_avg 0.7989 Recall_avg 0.7988 F1_avg 0.7987
+    Loss 1.0137
+
+    [Test (Target Domain)]: 
+    Data Time 0.2233 (0.0028)
+    Batch Time 13.4045 (0.1676)
+Accuracy 0.4057 0.4057
+    Precision 0.2001 0.8516
+    Recall 0.7452 0.3293
+    F1 0.3155 0.4750
+    Acc_avg 0.4057 Prec_avg 0.5259 Recall_avg 0.5372 F1_avg 0.3952
+    Loss 1.9783
+
+    [Tain]: 
+    Epoch 28
+    Data Time 6.8722 (0.0243)
+    Batch Time 146.4547 (0.5175)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9998 0.9998
+    Precision 0.9996 1.0000
+    Recall 1.0000 0.9996
+    F1 0.9998 0.9998
+    AdversarialNet Acc 0.5052 Acc_avg 0.9998 Prec_avg 0.9998 Recall_avg 0.9998 F1_avg 0.9998
+    Total Loss -0.0621 Global Cls Loss 0.0012 Local Cls Loss 0.0009 AFN Loss 0.0000 DAN Loss -0.0642
+
+    [Test (Source Domain)]: 
+    Data Time 0.0305 (0.0030)
+    Batch Time 1.7541 (0.1754)
+Accuracy 0.8113 0.8113
+    Precision 0.8063 0.8165
+    Recall 0.8165 0.8063
+    F1 0.8113 0.8113
+    Acc_avg 0.8113 Prec_avg 0.8114 Recall_avg 0.8114 F1_avg 0.8113
+    Loss 0.9552
+
+    [Test (Target Domain)]: 
+    Data Time 0.2233 (0.0028)
+    Batch Time 13.4674 (0.1683)
+Accuracy 0.4892 0.4892
+    Precision 0.2206 0.8681
+    Recall 0.7024 0.4412
+    F1 0.3357 0.5850
+    Acc_avg 0.4892 Prec_avg 0.5443 Recall_avg 0.5718 F1_avg 0.4604
+    Loss 1.4819
+
+    [Tain]: 
+    Epoch 29
+    Data Time 6.9983 (0.0247)
+    Batch Time 144.0641 (0.5091)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9997 0.9997
+    Precision 0.9996 0.9998
+    Recall 0.9998 0.9995
+    F1 0.9997 0.9997
+    AdversarialNet Acc 0.5106 Acc_avg 0.9997 Prec_avg 0.9997 Recall_avg 0.9997 F1_avg 0.9997
+    Total Loss -0.0612 Global Cls Loss 0.0018 Local Cls Loss 0.0013 AFN Loss 0.0000 DAN Loss -0.0643
+
+    [Test (Source Domain)]: 
+    Data Time 0.0304 (0.0030)
+    Batch Time 1.6908 (0.1691)
+Accuracy 0.7987 0.7987
+    Precision 0.8133 0.7857
+    Recall 0.7722 0.8250
+    F1 0.7922 0.8049
+    Acc_avg 0.7987 Prec_avg 0.7995 Recall_avg 0.7986 F1_avg 0.7985
+    Loss 0.9533
+
+    [Test (Target Domain)]: 
+    Data Time 0.2249 (0.0028)
+    Batch Time 13.4794 (0.1685)
+Accuracy 0.4471 0.4471
+    Precision 0.1970 0.8369
+    Recall 0.6531 0.4007
+    F1 0.3027 0.5419
+    Acc_avg 0.4471 Prec_avg 0.5169 Recall_avg 0.5269 F1_avg 0.4223
+    Loss 1.5065
+
+    [Tain]: 
+    Epoch 30
+    Data Time 6.9497 (0.0246)
+    Batch Time 144.7048 (0.5113)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9994 0.9994
+    Precision 0.9994 0.9995
+    Recall 0.9996 0.9993
+    F1 0.9995 0.9994
+    AdversarialNet Acc 0.5139 Acc_avg 0.9994 Prec_avg 0.9995 Recall_avg 0.9994 F1_avg 0.9994
+    Total Loss -0.0603 Global Cls Loss 0.0023 Local Cls Loss 0.0018 AFN Loss 0.0000 DAN Loss -0.0644
+
+    [Test (Source Domain)]: 
+    Data Time 0.0309 (0.0031)
+    Batch Time 1.7494 (0.1749)
+Accuracy 0.7893 0.7893
+    Precision 0.7791 0.8000
+    Recall 0.8038 0.7750
+    F1 0.7913 0.7873
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9161
+
+    [Test (Target Domain)]: 
+    Data Time 0.2206 (0.0028)
+    Batch Time 13.5395 (0.1692)
+Accuracy 0.3770 0.3770
+    Precision 0.1931 0.8396
+    Recall 0.7516 0.2927
+    F1 0.3072 0.4340
+    Acc_avg 0.3770 Prec_avg 0.5163 Recall_avg 0.5221 F1_avg 0.3706
+    Loss 2.1066
+
+    [Tain]: 
+    Epoch 31
+    Data Time 6.8611 (0.0242)
+    Batch Time 143.1179 (0.5057)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5147 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0632 Global Cls Loss 0.0009 Local Cls Loss 0.0005 AFN Loss 0.0000 DAN Loss -0.0645
+
+    [Test (Source Domain)]: 
+    Data Time 0.0326 (0.0033)
+    Batch Time 1.7264 (0.1726)
+Accuracy 0.8082 0.8082
+    Precision 0.8050 0.8113
+    Recall 0.8101 0.8063
+    F1 0.8076 0.8088
+    Acc_avg 0.8082 Prec_avg 0.8082 Recall_avg 0.8082 F1_avg 0.8082
+    Loss 0.9422
+
+    [Test (Target Domain)]: 
+    Data Time 0.2249 (0.0028)
+    Batch Time 13.4676 (0.1683)
+Accuracy 0.4132 0.4132
+    Precision 0.1912 0.8301
+    Recall 0.6788 0.3534
+    F1 0.2984 0.4958
+    Acc_avg 0.4132 Prec_avg 0.5107 Recall_avg 0.5161 F1_avg 0.3971
+    Loss 1.7248
+
+    [Tain]: 
+    Epoch 32
+    Data Time 6.9816 (0.0247)
+    Batch Time 144.2949 (0.5099)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9996 0.9996
+    Precision 1.0000 0.9991
+    Recall 0.9991 1.0000
+    F1 0.9996 0.9995
+    AdversarialNet Acc 0.5029 Acc_avg 0.9996 Prec_avg 0.9995 Recall_avg 0.9996 F1_avg 0.9996
+    Total Loss -0.0617 Global Cls Loss 0.0018 Local Cls Loss 0.0012 AFN Loss 0.0000 DAN Loss -0.0646
+
+    [Test (Source Domain)]: 
+    Data Time 0.0310 (0.0031)
+    Batch Time 1.7245 (0.1724)
+Accuracy 0.7987 0.7987
+    Precision 0.8052 0.7927
+    Recall 0.7848 0.8125
+    F1 0.7949 0.8025
+    Acc_avg 0.7987 Prec_avg 0.7989 Recall_avg 0.7987 F1_avg 0.7987
+    Loss 0.9315
+
+    [Test (Target Domain)]: 
+    Data Time 0.2151 (0.0027)
+    Batch Time 13.3407 (0.1668)
+Accuracy 0.4148 0.4148
+    Precision 0.1961 0.8401
+    Recall 0.7045 0.3496
+    F1 0.3068 0.4937
+    Acc_avg 0.4148 Prec_avg 0.5181 Recall_avg 0.5270 F1_avg 0.4002
+    Loss 1.7838
+
+    [Tain]: 
+    Epoch 33
+    Data Time 6.8428 (0.0242)
+    Batch Time 144.7377 (0.5114)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9992 0.9992
+    Precision 0.9991 0.9993
+    Recall 0.9994 0.9991
+    F1 0.9992 0.9992
+    AdversarialNet Acc 0.5118 Acc_avg 0.9992 Prec_avg 0.9992 Recall_avg 0.9992 F1_avg 0.9992
+    Total Loss -0.0598 Global Cls Loss 0.0028 Local Cls Loss 0.0021 AFN Loss 0.0000 DAN Loss -0.0647
+
+    [Test (Source Domain)]: 
+    Data Time 0.0509 (0.0051)
+    Batch Time 1.7596 (0.1760)
+Accuracy 0.7862 0.7862
+    Precision 0.7711 0.8026
+    Recall 0.8101 0.7625
+    F1 0.7901 0.7821
+    Acc_avg 0.7862 Prec_avg 0.7869 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 1.0043
+
+    [Test (Target Domain)]: 
+    Data Time 0.2210 (0.0028)
+    Batch Time 13.2016 (0.1650)
+Accuracy 0.3676 0.3676
+    Precision 0.1939 0.8439
+    Recall 0.7730 0.2763
+    F1 0.3100 0.4163
+    Acc_avg 0.3676 Prec_avg 0.5189 Recall_avg 0.5246 F1_avg 0.3631
+    Loss 2.1619
+
+    [Tain]: 
+    Epoch 34
+    Data Time 7.0703 (0.0250)
+    Batch Time 144.2695 (0.5098)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9997 0.9997
+    Precision 0.9996 0.9998
+    Recall 0.9998 0.9995
+    F1 0.9997 0.9997
+    AdversarialNet Acc 0.5033 Acc_avg 0.9997 Prec_avg 0.9997 Recall_avg 0.9997 F1_avg 0.9997
+    Total Loss -0.0623 Global Cls Loss 0.0016 Local Cls Loss 0.0009 AFN Loss 0.0000 DAN Loss -0.0647
+
+    [Test (Source Domain)]: 
+    Data Time 0.0298 (0.0030)
+    Batch Time 1.7007 (0.1701)
+Accuracy 0.7987 0.7987
+    Precision 0.7901 0.8077
+    Recall 0.8101 0.7875
+    F1 0.8000 0.7975
+    Acc_avg 0.7987 Prec_avg 0.7989 Recall_avg 0.7988 F1_avg 0.7987
+    Loss 0.9682
+
+    [Test (Target Domain)]: 
+    Data Time 0.2096 (0.0026)
+    Batch Time 13.4491 (0.1681)
+Accuracy 0.3912 0.3912
+    Precision 0.1871 0.8233
+    Recall 0.6916 0.3235
+    F1 0.2946 0.4645
+    Acc_avg 0.3912 Prec_avg 0.5052 Recall_avg 0.5076 F1_avg 0.3795
+    Loss 1.7552
+
+    [Tain]: 
+    Epoch 35
+    Data Time 7.0723 (0.0250)
+    Batch Time 144.8476 (0.5118)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9998 0.9998
+    Precision 0.9996 1.0000
+    Recall 1.0000 0.9995
+    F1 0.9998 0.9998
+    AdversarialNet Acc 0.5055 Acc_avg 0.9998 Prec_avg 0.9998 Recall_avg 0.9998 F1_avg 0.9998
+    Total Loss -0.0618 Global Cls Loss 0.0018 Local Cls Loss 0.0013 AFN Loss 0.0000 DAN Loss -0.0648
+
+    [Test (Source Domain)]: 
+    Data Time 0.0288 (0.0029)
+    Batch Time 1.7279 (0.1728)
+Accuracy 0.7893 0.7893
+    Precision 0.7725 0.8079
+    Recall 0.8165 0.7625
+    F1 0.7938 0.7846
+    Acc_avg 0.7893 Prec_avg 0.7902 Recall_avg 0.7895 F1_avg 0.7892
+    Loss 0.9943
+
+    [Test (Target Domain)]: 
+    Data Time 0.2212 (0.0028)
+    Batch Time 13.3052 (0.1663)
+Accuracy 0.4176 0.4176
+    Precision 0.1940 0.8352
+    Recall 0.6874 0.3568
+    F1 0.3025 0.5000
+    Acc_avg 0.4176 Prec_avg 0.5146 Recall_avg 0.5221 F1_avg 0.4013
+    Loss 1.6645
+
+    [Tain]: 
+    Epoch 36
+    Data Time 7.2046 (0.0255)
+    Batch Time 146.6642 (0.5182)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5153 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0629 Global Cls Loss 0.0013 Local Cls Loss 0.0007 AFN Loss 0.0000 DAN Loss -0.0649
+
+    [Test (Source Domain)]: 
+    Data Time 0.0288 (0.0029)
+    Batch Time 1.6785 (0.1678)
+Accuracy 0.7956 0.7956
+    Precision 0.7925 0.7987
+    Recall 0.7975 0.7937
+    F1 0.7950 0.7962
+    Acc_avg 0.7956 Prec_avg 0.7956 Recall_avg 0.7956 F1_avg 0.7956
+    Loss 0.9551
+
+    [Test (Target Domain)]: 
+    Data Time 0.2217 (0.0028)
+    Batch Time 13.3746 (0.1672)
+Accuracy 0.3802 0.3802
+    Precision 0.1881 0.8261
+    Recall 0.7152 0.3047
+    F1 0.2978 0.4452
+    Acc_avg 0.3802 Prec_avg 0.5071 Recall_avg 0.5100 F1_avg 0.3715
+    Loss 1.7665
+
+    [Tain]: 
+    Epoch 37
+    Data Time 7.1399 (0.0252)
+    Batch Time 143.6300 (0.5075)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9998 0.9998
+    Precision 0.9996 1.0000
+    Recall 1.0000 0.9995
+    F1 0.9998 0.9998
+    AdversarialNet Acc 0.5061 Acc_avg 0.9998 Prec_avg 0.9998 Recall_avg 0.9998 F1_avg 0.9998
+    Total Loss -0.0629 Global Cls Loss 0.0014 Local Cls Loss 0.0007 AFN Loss 0.0000 DAN Loss -0.0650
+
+    [Test (Source Domain)]: 
+    Data Time 0.0281 (0.0028)
+    Batch Time 1.7179 (0.1718)
+Accuracy 0.8082 0.8082
+    Precision 0.8129 0.8037
+    Recall 0.7975 0.8187
+    F1 0.8051 0.8111
+    Acc_avg 0.8082 Prec_avg 0.8083 Recall_avg 0.8081 F1_avg 0.8081
+    Loss 0.9228
+
+    [Test (Target Domain)]: 
+    Data Time 0.2199 (0.0027)
+    Batch Time 13.4418 (0.1680)
+Accuracy 0.3680 0.3680
+    Precision 0.1852 0.8197
+    Recall 0.7173 0.2893
+    F1 0.2944 0.4277
+    Acc_avg 0.3680 Prec_avg 0.5024 Recall_avg 0.5033 F1_avg 0.3610
+    Loss 1.7548
+
+    [Tain]: 
+    Epoch 38
+    Data Time 7.3053 (0.0258)
+    Batch Time 149.5319 (0.5284)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5104 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0642 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0650
+
+    [Test (Source Domain)]: 
+    Data Time 0.0317 (0.0032)
+    Batch Time 1.7066 (0.1707)
+Accuracy 0.7987 0.7987
+    Precision 0.7866 0.8117
+    Recall 0.8165 0.7812
+    F1 0.8012 0.7962
+    Acc_avg 0.7987 Prec_avg 0.7991 Recall_avg 0.7989 F1_avg 0.7987
+    Loss 0.9263
+
+    [Test (Target Domain)]: 
+    Data Time 0.2193 (0.0027)
+    Batch Time 13.5411 (0.1693)
+Accuracy 0.4014 0.4014
+    Precision 0.1893 0.8272
+    Recall 0.6874 0.3370
+    F1 0.2968 0.4789
+    Acc_avg 0.4014 Prec_avg 0.5082 Recall_avg 0.5122 F1_avg 0.3879
+    Loss 1.5727
+
+    [Tain]: 
+    Epoch 39
+    Data Time 6.6918 (0.0236)
+    Batch Time 143.5244 (0.5072)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5141 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0638 Global Cls Loss 0.0008 Local Cls Loss 0.0005 AFN Loss 0.0000 DAN Loss -0.0651
+
+    [Test (Source Domain)]: 
+    Data Time 0.0329 (0.0033)
+    Batch Time 1.7262 (0.1726)
+Accuracy 0.7987 0.7987
+    Precision 0.7866 0.8117
+    Recall 0.8165 0.7812
+    F1 0.8012 0.7962
+    Acc_avg 0.7987 Prec_avg 0.7991 Recall_avg 0.7989 F1_avg 0.7987
+    Loss 0.9360
+
+    [Test (Target Domain)]: 
+    Data Time 0.2174 (0.0027)
+    Batch Time 13.3168 (0.1665)
+Accuracy 0.4002 0.4002
+    Precision 0.1897 0.8282
+    Recall 0.6916 0.3346
+    F1 0.2977 0.4766
+    Acc_avg 0.4002 Prec_avg 0.5089 Recall_avg 0.5131 F1_avg 0.3872
+    Loss 1.5308
+
+    [Tain]: 
+    Epoch 40
+    Data Time 7.5759 (0.0268)
+    Batch Time 147.6163 (0.5216)
+    Learning Rate 0.0001 Learning Rate(AdversarialNet) 0.0001
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5121 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0639 Global Cls Loss 0.0009 Local Cls Loss 0.0005 AFN Loss 0.0000 DAN Loss -0.0652
+
+    [Test (Source Domain)]: 
+    Data Time 0.0312 (0.0031)
+    Batch Time 1.7237 (0.1724)
+Accuracy 0.8019 0.8019
+    Precision 0.7879 0.8170
+    Recall 0.8228 0.7812
+    F1 0.8050 0.7987
+    Acc_avg 0.8019 Prec_avg 0.8024 Recall_avg 0.8020 F1_avg 0.8018
+    Loss 1.0003
+
+    [Test (Target Domain)]: 
+    Data Time 0.2165 (0.0027)
+    Batch Time 13.4354 (0.1679)
+Accuracy 0.4730 0.4730
+    Precision 0.1960 0.8320
+    Recall 0.6017 0.4441
+    F1 0.2956 0.5791
+    Acc_avg 0.4730 Prec_avg 0.5140 Recall_avg 0.5229 F1_avg 0.4373
+    Loss 1.2949
+
+    [Tain]: 
+    Epoch 41
+    Data Time 6.9507 (0.0246)
+    Batch Time 145.1172 (0.5128)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5160 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0635 Global Cls Loss 0.0011 Local Cls Loss 0.0007 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0719 (0.0072)
+    Batch Time 1.7034 (0.1703)
+Accuracy 0.8019 0.8019
+    Precision 0.7844 0.8212
+    Recall 0.8291 0.7750
+    F1 0.8062 0.7974
+    Acc_avg 0.8019 Prec_avg 0.8028 Recall_avg 0.8021 F1_avg 0.8018
+    Loss 0.9984
+
+    [Test (Target Domain)]: 
+    Data Time 0.2192 (0.0027)
+    Batch Time 13.4167 (0.1677)
+Accuracy 0.4317 0.4317
+    Precision 0.1926 0.8309
+    Recall 0.6552 0.3814
+    F1 0.2977 0.5228
+    Acc_avg 0.4317 Prec_avg 0.5117 Recall_avg 0.5183 F1_avg 0.4102
+    Loss 1.4137
+
+    [Tain]: 
+    Epoch 42
+    Data Time 6.8058 (0.0240)
+    Batch Time 144.5799 (0.5109)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9998 0.9998
+    Precision 0.9998 0.9998
+    Recall 0.9998 0.9998
+    F1 0.9998 0.9998
+    AdversarialNet Acc 0.5093 Acc_avg 0.9998 Prec_avg 0.9998 Recall_avg 0.9998 F1_avg 0.9998
+    Total Loss -0.0638 Global Cls Loss 0.0010 Local Cls Loss 0.0005 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0299 (0.0030)
+    Batch Time 1.6845 (0.1684)
+Accuracy 0.7987 0.7987
+    Precision 0.7831 0.8158
+    Recall 0.8228 0.7750
+    F1 0.8025 0.7949
+    Acc_avg 0.7987 Prec_avg 0.7995 Recall_avg 0.7989 F1_avg 0.7987
+    Loss 0.9744
+
+    [Test (Target Domain)]: 
+    Data Time 0.2366 (0.0030)
+    Batch Time 13.4567 (0.1682)
+Accuracy 0.4447 0.4447
+    Precision 0.1943 0.8325
+    Recall 0.6424 0.4002
+    F1 0.2984 0.5405
+    Acc_avg 0.4447 Prec_avg 0.5134 Recall_avg 0.5213 F1_avg 0.4194
+    Loss 1.3656
+
+    [Tain]: 
+    Epoch 43
+    Data Time 7.0932 (0.0251)
+    Batch Time 151.7449 (0.5362)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5169 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0639 Global Cls Loss 0.0009 Local Cls Loss 0.0005 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0277 (0.0028)
+    Batch Time 1.7443 (0.1744)
+Accuracy 0.7956 0.7956
+    Precision 0.7818 0.8105
+    Recall 0.8165 0.7750
+    F1 0.7988 0.7923
+    Acc_avg 0.7956 Prec_avg 0.7961 Recall_avg 0.7957 F1_avg 0.7955
+    Loss 0.9708
+
+    [Test (Target Domain)]: 
+    Data Time 0.2223 (0.0028)
+    Batch Time 13.3457 (0.1668)
+Accuracy 0.4199 0.4199
+    Precision 0.1932 0.8333
+    Recall 0.6788 0.3616
+    F1 0.3008 0.5044
+    Acc_avg 0.4199 Prec_avg 0.5133 Recall_avg 0.5202 F1_avg 0.4026
+    Loss 1.4730
+
+    [Tain]: 
+    Epoch 44
+    Data Time 6.4619 (0.0228)
+    Batch Time 145.3076 (0.5135)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5141 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0640 Global Cls Loss 0.0009 Local Cls Loss 0.0004 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0315 (0.0031)
+    Batch Time 1.7449 (0.1745)
+Accuracy 0.7956 0.7956
+    Precision 0.7925 0.7987
+    Recall 0.7975 0.7937
+    F1 0.7950 0.7962
+    Acc_avg 0.7956 Prec_avg 0.7956 Recall_avg 0.7956 F1_avg 0.7956
+    Loss 0.9664
+
+    [Test (Target Domain)]: 
+    Data Time 0.2164 (0.0027)
+    Batch Time 13.2565 (0.1657)
+Accuracy 0.4494 0.4494
+    Precision 0.1946 0.8325
+    Recall 0.6360 0.4074
+    F1 0.2980 0.5471
+    Acc_avg 0.4494 Prec_avg 0.5136 Recall_avg 0.5217 F1_avg 0.4226
+    Loss 1.3569
+
+    [Tain]: 
+    Epoch 45
+    Data Time 6.5420 (0.0231)
+    Batch Time 149.2999 (0.5276)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 1.0000 0.9998
+    Recall 0.9998 1.0000
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5155 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0643 Global Cls Loss 0.0007 Local Cls Loss 0.0003 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0295 (0.0029)
+    Batch Time 1.7399 (0.1740)
+Accuracy 0.7893 0.7893
+    Precision 0.7758 0.8039
+    Recall 0.8101 0.7688
+    F1 0.7926 0.7859
+    Acc_avg 0.7893 Prec_avg 0.7898 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9676
+
+    [Test (Target Domain)]: 
+    Data Time 0.2162 (0.0027)
+    Batch Time 13.2692 (0.1659)
+Accuracy 0.4097 0.4097
+    Precision 0.1905 0.8291
+    Recall 0.6809 0.3486
+    F1 0.2978 0.4908
+    Acc_avg 0.4097 Prec_avg 0.5098 Recall_avg 0.5148 F1_avg 0.3943
+    Loss 1.5074
+
+    [Tain]: 
+    Epoch 46
+    Data Time 6.7921 (0.0240)
+    Batch Time 144.8997 (0.5120)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5103 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0645 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0270 (0.0027)
+    Batch Time 1.6799 (0.1680)
+Accuracy 0.7893 0.7893
+    Precision 0.7725 0.8079
+    Recall 0.8165 0.7625
+    F1 0.7938 0.7846
+    Acc_avg 0.7893 Prec_avg 0.7902 Recall_avg 0.7895 F1_avg 0.7892
+    Loss 0.9625
+
+    [Test (Target Domain)]: 
+    Data Time 0.2154 (0.0027)
+    Batch Time 13.3001 (0.1663)
+Accuracy 0.4191 0.4191
+    Precision 0.1933 0.8337
+    Recall 0.6809 0.3602
+    F1 0.3011 0.5030
+    Acc_avg 0.4191 Prec_avg 0.5135 Recall_avg 0.5206 F1_avg 0.4021
+    Loss 1.4861
+
+    [Tain]: 
+    Epoch 47
+    Data Time 6.4805 (0.0229)
+    Batch Time 147.9914 (0.5229)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5103 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0645 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.1366 (0.0137)
+    Batch Time 1.7263 (0.1726)
+Accuracy 0.7830 0.7830
+    Precision 0.7697 0.7974
+    Recall 0.8038 0.7625
+    F1 0.7864 0.7796
+    Acc_avg 0.7830 Prec_avg 0.7835 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9614
+
+    [Test (Target Domain)]: 
+    Data Time 0.2240 (0.0028)
+    Batch Time 13.4732 (0.1684)
+Accuracy 0.4376 0.4376
+    Precision 0.1982 0.8405
+    Recall 0.6767 0.3838
+    F1 0.3066 0.5270
+    Acc_avg 0.4376 Prec_avg 0.5194 Recall_avg 0.5302 F1_avg 0.4168
+    Loss 1.4104
+
+    [Tain]: 
+    Epoch 48
+    Data Time 6.4866 (0.0229)
+    Batch Time 145.2916 (0.5134)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5055 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0646 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0289 (0.0029)
+    Batch Time 1.7013 (0.1701)
+Accuracy 0.7830 0.7830
+    Precision 0.7697 0.7974
+    Recall 0.8038 0.7625
+    F1 0.7864 0.7796
+    Acc_avg 0.7830 Prec_avg 0.7835 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9591
+
+    [Test (Target Domain)]: 
+    Data Time 0.2358 (0.0029)
+    Batch Time 14.6461 (0.1831)
+Accuracy 0.4384 0.4384
+    Precision 0.1947 0.8338
+    Recall 0.6552 0.3896
+    F1 0.3001 0.5311
+    Acc_avg 0.4384 Prec_avg 0.5143 Recall_avg 0.5224 F1_avg 0.4156
+    Loss 1.3904
+
+    [Tain]: 
+    Epoch 49
+    Data Time 6.7079 (0.0237)
+    Batch Time 143.8523 (0.5083)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5061 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.1289 (0.0129)
+    Batch Time 2.0146 (0.2015)
+Accuracy 0.7862 0.7862
+    Precision 0.7711 0.8026
+    Recall 0.8101 0.7625
+    F1 0.7901 0.7821
+    Acc_avg 0.7862 Prec_avg 0.7869 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9662
+
+    [Test (Target Domain)]: 
+    Data Time 0.2223 (0.0028)
+    Batch Time 15.5189 (0.1940)
+Accuracy 0.4443 0.4443
+    Precision 0.1965 0.8364
+    Recall 0.6552 0.3968
+    F1 0.3024 0.5383
+    Acc_avg 0.4443 Prec_avg 0.5165 Recall_avg 0.5260 F1_avg 0.4203
+    Loss 1.3688
+
+    [Tain]: 
+    Epoch 50
+    Data Time 6.6643 (0.0235)
+    Batch Time 148.4413 (0.5245)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5093 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0645 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0268 (0.0027)
+    Batch Time 1.7027 (0.1703)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.9528
+
+    [Test (Target Domain)]: 
+    Data Time 0.2213 (0.0028)
+    Batch Time 13.1804 (0.1648)
+Accuracy 0.4384 0.4384
+    Precision 0.1943 0.8332
+    Recall 0.6531 0.3901
+    F1 0.2995 0.5314
+    Acc_avg 0.4384 Prec_avg 0.5137 Recall_avg 0.5216 F1_avg 0.4154
+    Loss 1.3889
+
+    [Tain]: 
+    Epoch 51
+    Data Time 6.6746 (0.0236)
+    Batch Time 147.2914 (0.5205)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5137 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0644 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0317 (0.0032)
+    Batch Time 1.7381 (0.1738)
+Accuracy 0.7862 0.7862
+    Precision 0.7711 0.8026
+    Recall 0.8101 0.7625
+    F1 0.7901 0.7821
+    Acc_avg 0.7862 Prec_avg 0.7869 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9587
+
+    [Test (Target Domain)]: 
+    Data Time 0.2173 (0.0027)
+    Batch Time 13.4141 (0.1677)
+Accuracy 0.4392 0.4392
+    Precision 0.1965 0.8370
+    Recall 0.6638 0.3886
+    F1 0.3032 0.5308
+    Acc_avg 0.4392 Prec_avg 0.5167 Recall_avg 0.5262 F1_avg 0.4170
+    Loss 1.3904
+
+    [Tain]: 
+    Epoch 52
+    Data Time 6.9632 (0.0246)
+    Batch Time 147.4102 (0.5209)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5143 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0643 Global Cls Loss 0.0007 Local Cls Loss 0.0003 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.1208 (0.0121)
+    Batch Time 1.6964 (0.1696)
+Accuracy 0.7925 0.7925
+    Precision 0.7805 0.8052
+    Recall 0.8101 0.7750
+    F1 0.7950 0.7898
+    Acc_avg 0.7925 Prec_avg 0.7928 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9520
+
+    [Test (Target Domain)]: 
+    Data Time 0.2177 (0.0027)
+    Batch Time 13.2966 (0.1662)
+Accuracy 0.4565 0.4565
+    Precision 0.1961 0.8341
+    Recall 0.6317 0.4171
+    F1 0.2993 0.5561
+    Acc_avg 0.4565 Prec_avg 0.5151 Recall_avg 0.5244 F1_avg 0.4277
+    Loss 1.3223
+
+    [Tain]: 
+    Epoch 53
+    Data Time 6.5861 (0.0233)
+    Batch Time 144.3891 (0.5102)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5088 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0646 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0350 (0.0035)
+    Batch Time 1.6910 (0.1691)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.9519
+
+    [Test (Target Domain)]: 
+    Data Time 0.2392 (0.0030)
+    Batch Time 14.8157 (0.1852)
+Accuracy 0.4325 0.4325
+    Precision 0.1978 0.8405
+    Recall 0.6831 0.3761
+    F1 0.3067 0.5197
+    Acc_avg 0.4325 Prec_avg 0.5191 Recall_avg 0.5296 F1_avg 0.4132
+    Loss 1.4168
+
+    [Tain]: 
+    Epoch 54
+    Data Time 6.6946 (0.0237)
+    Batch Time 146.8008 (0.5187)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5158 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0646 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0313 (0.0031)
+    Batch Time 1.7163 (0.1716)
+Accuracy 0.7956 0.7956
+    Precision 0.7784 0.8146
+    Recall 0.8228 0.7688
+    F1 0.8000 0.7910
+    Acc_avg 0.7956 Prec_avg 0.7965 Recall_avg 0.7958 F1_avg 0.7955
+    Loss 0.9416
+
+    [Test (Target Domain)]: 
+    Data Time 0.2177 (0.0027)
+    Batch Time 13.1419 (0.1643)
+Accuracy 0.4396 0.4396
+    Precision 0.1970 0.8378
+    Recall 0.6660 0.3886
+    F1 0.3040 0.5310
+    Acc_avg 0.4396 Prec_avg 0.5174 Recall_avg 0.5273 F1_avg 0.4175
+    Loss 1.3832
+
+    [Tain]: 
+    Epoch 55
+    Data Time 6.7991 (0.0240)
+    Batch Time 148.8815 (0.5261)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5137 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0365 (0.0037)
+    Batch Time 1.7311 (0.1731)
+Accuracy 0.7925 0.7925
+    Precision 0.7706 0.8176
+    Recall 0.8291 0.7562
+    F1 0.7988 0.7857
+    Acc_avg 0.7925 Prec_avg 0.7941 Recall_avg 0.7927 F1_avg 0.7922
+    Loss 0.9499
+
+    [Test (Target Domain)]: 
+    Data Time 0.2313 (0.0029)
+    Batch Time 13.5606 (0.1695)
+Accuracy 0.4262 0.4262
+    Precision 0.1973 0.8407
+    Recall 0.6916 0.3664
+    F1 0.3070 0.5104
+    Acc_avg 0.4262 Prec_avg 0.5190 Recall_avg 0.5290 F1_avg 0.4087
+    Loss 1.4486
+
+    [Tain]: 
+    Epoch 56
+    Data Time 6.9479 (0.0246)
+    Batch Time 143.9117 (0.5085)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5140 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0311 (0.0031)
+    Batch Time 1.7285 (0.1728)
+Accuracy 0.7956 0.7956
+    Precision 0.7818 0.8105
+    Recall 0.8165 0.7750
+    F1 0.7988 0.7923
+    Acc_avg 0.7956 Prec_avg 0.7961 Recall_avg 0.7957 F1_avg 0.7955
+    Loss 0.9503
+
+    [Test (Target Domain)]: 
+    Data Time 0.2145 (0.0027)
+    Batch Time 13.2846 (0.1661)
+Accuracy 0.4420 0.4420
+    Precision 0.1954 0.8347
+    Recall 0.6531 0.3944
+    F1 0.3008 0.5357
+    Acc_avg 0.4420 Prec_avg 0.5150 Recall_avg 0.5238 F1_avg 0.4182
+    Loss 1.3580
+
+    [Tain]: 
+    Epoch 57
+    Data Time 7.1656 (0.0253)
+    Batch Time 145.0711 (0.5126)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5110 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0296 (0.0030)
+    Batch Time 1.7240 (0.1724)
+Accuracy 0.7925 0.7925
+    Precision 0.7771 0.8092
+    Recall 0.8165 0.7688
+    F1 0.7963 0.7885
+    Acc_avg 0.7925 Prec_avg 0.7932 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9521
+
+    [Test (Target Domain)]: 
+    Data Time 0.2040 (0.0025)
+    Batch Time 13.3531 (0.1669)
+Accuracy 0.4439 0.4439
+    Precision 0.1968 0.8369
+    Recall 0.6574 0.3959
+    F1 0.3029 0.5375
+    Acc_avg 0.4439 Prec_avg 0.5168 Recall_avg 0.5266 F1_avg 0.4202
+    Loss 1.3611
+
+    [Tain]: 
+    Epoch 58
+    Data Time 7.2038 (0.0255)
+    Batch Time 144.7825 (0.5116)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5121 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0653
+
+    [Test (Source Domain)]: 
+    Data Time 0.0313 (0.0031)
+    Batch Time 1.6895 (0.1690)
+Accuracy 0.7987 0.7987
+    Precision 0.7831 0.8158
+    Recall 0.8228 0.7750
+    F1 0.8025 0.7949
+    Acc_avg 0.7987 Prec_avg 0.7995 Recall_avg 0.7989 F1_avg 0.7987
+    Loss 0.9498
+
+    [Test (Target Domain)]: 
+    Data Time 0.2233 (0.0028)
+    Batch Time 13.6060 (0.1701)
+Accuracy 0.4545 0.4545
+    Precision 0.1955 0.8333
+    Recall 0.6317 0.4147
+    F1 0.2986 0.5538
+    Acc_avg 0.4545 Prec_avg 0.5144 Recall_avg 0.5232 F1_avg 0.4262
+    Loss 1.3143
+
+    [Tain]: 
+    Epoch 59
+    Data Time 7.3007 (0.0258)
+    Batch Time 144.2586 (0.5097)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5119 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0317 (0.0032)
+    Batch Time 1.7564 (0.1756)
+Accuracy 0.7925 0.7925
+    Precision 0.7738 0.8133
+    Recall 0.8228 0.7625
+    F1 0.7975 0.7871
+    Acc_avg 0.7925 Prec_avg 0.7936 Recall_avg 0.7926 F1_avg 0.7923
+    Loss 0.9447
+
+    [Test (Target Domain)]: 
+    Data Time 0.2249 (0.0028)
+    Batch Time 13.2786 (0.1660)
+Accuracy 0.4392 0.4392
+    Precision 0.1957 0.8356
+    Recall 0.6595 0.3896
+    F1 0.3018 0.5314
+    Acc_avg 0.4392 Prec_avg 0.5156 Recall_avg 0.5246 F1_avg 0.4166
+    Loss 1.3909
+
+    [Tain]: 
+    Epoch 60
+    Data Time 7.1524 (0.0253)
+    Batch Time 143.4793 (0.5070)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5125 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0006 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0293 (0.0029)
+    Batch Time 1.6989 (0.1699)
+Accuracy 0.7956 0.7956
+    Precision 0.7751 0.8188
+    Recall 0.8291 0.7625
+    F1 0.8012 0.7896
+    Acc_avg 0.7956 Prec_avg 0.7970 Recall_avg 0.7958 F1_avg 0.7954
+    Loss 0.9412
+
+    [Test (Target Domain)]: 
+    Data Time 0.2155 (0.0027)
+    Batch Time 13.3382 (0.1667)
+Accuracy 0.4313 0.4313
+    Precision 0.1989 0.8430
+    Recall 0.6916 0.3727
+    F1 0.3089 0.5169
+    Acc_avg 0.4313 Prec_avg 0.5209 Recall_avg 0.5322 F1_avg 0.4129
+    Loss 1.4269
+
+    [Tain]: 
+    Epoch 61
+    Data Time 7.4901 (0.0265)
+    Batch Time 143.0837 (0.5056)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 1.0000 0.9998
+    Recall 0.9998 1.0000
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5125 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0646 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0315 (0.0031)
+    Batch Time 1.6831 (0.1683)
+Accuracy 0.7987 0.7987
+    Precision 0.7798 0.8200
+    Recall 0.8291 0.7688
+    F1 0.8037 0.7935
+    Acc_avg 0.7987 Prec_avg 0.7999 Recall_avg 0.7989 F1_avg 0.7986
+    Loss 0.9341
+
+    [Test (Target Domain)]: 
+    Data Time 0.2181 (0.0027)
+    Batch Time 13.4081 (0.1676)
+Accuracy 0.4423 0.4423
+    Precision 0.1959 0.8355
+    Recall 0.6552 0.3944
+    F1 0.3016 0.5359
+    Acc_avg 0.4423 Prec_avg 0.5157 Recall_avg 0.5248 F1_avg 0.4187
+    Loss 1.3645
+
+    [Tain]: 
+    Epoch 62
+    Data Time 7.4113 (0.0262)
+    Batch Time 144.8459 (0.5118)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5105 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0334 (0.0033)
+    Batch Time 1.7549 (0.1755)
+Accuracy 0.7925 0.7925
+    Precision 0.7706 0.8176
+    Recall 0.8291 0.7562
+    F1 0.7988 0.7857
+    Acc_avg 0.7925 Prec_avg 0.7941 Recall_avg 0.7927 F1_avg 0.7922
+    Loss 0.9312
+
+    [Test (Target Domain)]: 
+    Data Time 0.2067 (0.0026)
+    Batch Time 13.4085 (0.1676)
+Accuracy 0.4357 0.4357
+    Precision 0.1995 0.8433
+    Recall 0.6874 0.3790
+    F1 0.3092 0.5230
+    Acc_avg 0.4357 Prec_avg 0.5214 Recall_avg 0.5332 F1_avg 0.4161
+    Loss 1.4063
+
+    [Tain]: 
+    Epoch 63
+    Data Time 7.4355 (0.0263)
+    Batch Time 145.8311 (0.5153)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5139 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0340 (0.0034)
+    Batch Time 1.7881 (0.1788)
+Accuracy 0.7987 0.7987
+    Precision 0.7798 0.8200
+    Recall 0.8291 0.7688
+    F1 0.8037 0.7935
+    Acc_avg 0.7987 Prec_avg 0.7999 Recall_avg 0.7989 F1_avg 0.7986
+    Loss 0.9355
+
+    [Test (Target Domain)]: 
+    Data Time 0.2223 (0.0028)
+    Batch Time 13.5239 (0.1690)
+Accuracy 0.4439 0.4439
+    Precision 0.1983 0.8397
+    Recall 0.6660 0.3939
+    F1 0.3057 0.5363
+    Acc_avg 0.4439 Prec_avg 0.5190 Recall_avg 0.5299 F1_avg 0.4210
+    Loss 1.3671
+
+    [Tain]: 
+    Epoch 64
+    Data Time 6.9809 (0.0247)
+    Batch Time 144.0916 (0.5092)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5036 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0316 (0.0032)
+    Batch Time 1.6626 (0.1663)
+Accuracy 0.7925 0.7925
+    Precision 0.7840 0.8013
+    Recall 0.8038 0.7812
+    F1 0.7938 0.7911
+    Acc_avg 0.7925 Prec_avg 0.7926 Recall_avg 0.7925 F1_avg 0.7924
+    Loss 0.9448
+
+    [Test (Target Domain)]: 
+    Data Time 0.2209 (0.0028)
+    Batch Time 13.1526 (0.1644)
+Accuracy 0.4837 0.4837
+    Precision 0.1997 0.8360
+    Recall 0.6017 0.4571
+    F1 0.2999 0.5910
+    Acc_avg 0.4837 Prec_avg 0.5178 Recall_avg 0.5294 F1_avg 0.4455
+    Loss 1.2239
+
+    [Tain]: 
+    Epoch 65
+    Data Time 6.7505 (0.0239)
+    Batch Time 143.6780 (0.5077)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5032 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0363 (0.0036)
+    Batch Time 1.7511 (0.1751)
+Accuracy 0.7925 0.7925
+    Precision 0.7706 0.8176
+    Recall 0.8291 0.7562
+    F1 0.7988 0.7857
+    Acc_avg 0.7925 Prec_avg 0.7941 Recall_avg 0.7927 F1_avg 0.7922
+    Loss 0.9365
+
+    [Test (Target Domain)]: 
+    Data Time 0.2212 (0.0028)
+    Batch Time 13.4216 (0.1678)
+Accuracy 0.4270 0.4270
+    Precision 0.1990 0.8441
+    Recall 0.7002 0.3655
+    F1 0.3100 0.5101
+    Acc_avg 0.4270 Prec_avg 0.5216 Recall_avg 0.5328 F1_avg 0.4100
+    Loss 1.4448
+
+    [Tain]: 
+    Epoch 66
+    Data Time 7.1224 (0.0252)
+    Batch Time 146.7149 (0.5184)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5135 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0644 Global Cls Loss 0.0007 Local Cls Loss 0.0003 AFN Loss 0.0000 DAN Loss -0.0654
+
+    [Test (Source Domain)]: 
+    Data Time 0.0284 (0.0028)
+    Batch Time 1.6553 (0.1655)
+Accuracy 0.7893 0.7893
+    Precision 0.7826 0.7962
+    Recall 0.7975 0.7812
+    F1 0.7900 0.7886
+    Acc_avg 0.7893 Prec_avg 0.7894 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9333
+
+    [Test (Target Domain)]: 
+    Data Time 0.2371 (0.0030)
+    Batch Time 13.2392 (0.1655)
+Accuracy 0.4549 0.4549
+    Precision 0.2004 0.8414
+    Recall 0.6574 0.4094
+    F1 0.3072 0.5508
+    Acc_avg 0.4549 Prec_avg 0.5209 Recall_avg 0.5334 F1_avg 0.4290
+    Loss 1.3152
+
+    [Tain]: 
+    Epoch 67
+    Data Time 7.2633 (0.0257)
+    Batch Time 148.0569 (0.5232)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5095 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0295 (0.0030)
+    Batch Time 1.6945 (0.1694)
+Accuracy 0.7830 0.7830
+    Precision 0.7665 0.8013
+    Recall 0.8101 0.7562
+    F1 0.7877 0.7781
+    Acc_avg 0.7830 Prec_avg 0.7839 Recall_avg 0.7832 F1_avg 0.7829
+    Loss 0.9269
+
+    [Test (Target Domain)]: 
+    Data Time 0.2169 (0.0027)
+    Batch Time 13.3703 (0.1671)
+Accuracy 0.4463 0.4463
+    Precision 0.1995 0.8414
+    Recall 0.6681 0.3963
+    F1 0.3072 0.5388
+    Acc_avg 0.4463 Prec_avg 0.5204 Recall_avg 0.5322 F1_avg 0.4230
+    Loss 1.3505
+
+    [Tain]: 
+    Epoch 68
+    Data Time 7.2435 (0.0256)
+    Batch Time 145.1830 (0.5130)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5060 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0647 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0330 (0.0033)
+    Batch Time 1.7374 (0.1737)
+Accuracy 0.7893 0.7893
+    Precision 0.7791 0.8000
+    Recall 0.8038 0.7750
+    F1 0.7913 0.7873
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9331
+
+    [Test (Target Domain)]: 
+    Data Time 0.2178 (0.0027)
+    Batch Time 13.3551 (0.1669)
+Accuracy 0.4534 0.4534
+    Precision 0.1995 0.8401
+    Recall 0.6552 0.4079
+    F1 0.3058 0.5492
+    Acc_avg 0.4534 Prec_avg 0.5198 Recall_avg 0.5316 F1_avg 0.4275
+    Loss 1.3107
+
+    [Tain]: 
+    Epoch 69
+    Data Time 7.2201 (0.0255)
+    Batch Time 143.2551 (0.5062)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5083 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0490 (0.0049)
+    Batch Time 1.6807 (0.1681)
+Accuracy 0.7925 0.7925
+    Precision 0.7805 0.8052
+    Recall 0.8101 0.7750
+    F1 0.7950 0.7898
+    Acc_avg 0.7925 Prec_avg 0.7928 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9241
+
+    [Test (Target Domain)]: 
+    Data Time 0.2156 (0.0027)
+    Batch Time 13.3333 (0.1667)
+Accuracy 0.4455 0.4455
+    Precision 0.1996 0.8417
+    Recall 0.6702 0.3949
+    F1 0.3076 0.5376
+    Acc_avg 0.4455 Prec_avg 0.5207 Recall_avg 0.5326 F1_avg 0.4226
+    Loss 1.3699
+
+    [Tain]: 
+    Epoch 70
+    Data Time 7.1402 (0.0252)
+    Batch Time 143.5128 (0.5071)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5102 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0006 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0369 (0.0037)
+    Batch Time 1.6862 (0.1686)
+Accuracy 0.7893 0.7893
+    Precision 0.7791 0.8000
+    Recall 0.8038 0.7750
+    F1 0.7913 0.7873
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9243
+
+    [Test (Target Domain)]: 
+    Data Time 0.2219 (0.0028)
+    Batch Time 13.3579 (0.1670)
+Accuracy 0.4526 0.4526
+    Precision 0.1972 0.8365
+    Recall 0.6445 0.4094
+    F1 0.3021 0.5497
+    Acc_avg 0.4526 Prec_avg 0.5169 Recall_avg 0.5269 F1_avg 0.4259
+    Loss 1.3021
+
+    [Tain]: 
+    Epoch 71
+    Data Time 7.3829 (0.0261)
+    Batch Time 143.6477 (0.5076)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5136 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0281 (0.0028)
+    Batch Time 1.6867 (0.1687)
+Accuracy 0.7893 0.7893
+    Precision 0.7791 0.8000
+    Recall 0.8038 0.7750
+    F1 0.7913 0.7873
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9277
+
+    [Test (Target Domain)]: 
+    Data Time 0.2109 (0.0026)
+    Batch Time 13.4655 (0.1683)
+Accuracy 0.4427 0.4427
+    Precision 0.1976 0.8385
+    Recall 0.6638 0.3930
+    F1 0.3045 0.5351
+    Acc_avg 0.4427 Prec_avg 0.5180 Recall_avg 0.5284 F1_avg 0.4198
+    Loss 1.3537
+
+    [Tain]: 
+    Epoch 72
+    Data Time 6.9155 (0.0244)
+    Batch Time 143.6227 (0.5075)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5083 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0647 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0316 (0.0032)
+    Batch Time 1.6729 (0.1673)
+Accuracy 0.7830 0.7830
+    Precision 0.7730 0.7935
+    Recall 0.7975 0.7688
+    F1 0.7850 0.7810
+    Acc_avg 0.7830 Prec_avg 0.7833 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9274
+
+    [Test (Target Domain)]: 
+    Data Time 0.2244 (0.0028)
+    Batch Time 13.4378 (0.1680)
+Accuracy 0.4427 0.4427
+    Precision 0.1987 0.8406
+    Recall 0.6702 0.3915
+    F1 0.3066 0.5342
+    Acc_avg 0.4427 Prec_avg 0.5197 Recall_avg 0.5309 F1_avg 0.4204
+    Loss 1.3679
+
+    [Tain]: 
+    Epoch 73
+    Data Time 6.8699 (0.0243)
+    Batch Time 144.6033 (0.5110)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5121 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0309 (0.0031)
+    Batch Time 1.6974 (0.1697)
+Accuracy 0.7925 0.7925
+    Precision 0.7738 0.8133
+    Recall 0.8228 0.7625
+    F1 0.7975 0.7871
+    Acc_avg 0.7925 Prec_avg 0.7936 Recall_avg 0.7926 F1_avg 0.7923
+    Loss 0.9219
+
+    [Test (Target Domain)]: 
+    Data Time 0.2195 (0.0027)
+    Batch Time 13.3741 (0.1672)
+Accuracy 0.4309 0.4309
+    Precision 0.1969 0.8391
+    Recall 0.6809 0.3746
+    F1 0.3055 0.5180
+    Acc_avg 0.4309 Prec_avg 0.5180 Recall_avg 0.5278 F1_avg 0.4117
+    Loss 1.3982
+
+    [Tain]: 
+    Epoch 74
+    Data Time 7.2070 (0.0255)
+    Batch Time 144.1126 (0.5092)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5090 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0264 (0.0026)
+    Batch Time 1.6762 (0.1676)
+Accuracy 0.7925 0.7925
+    Precision 0.7771 0.8092
+    Recall 0.8165 0.7688
+    F1 0.7963 0.7885
+    Acc_avg 0.7925 Prec_avg 0.7932 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9157
+
+    [Test (Target Domain)]: 
+    Data Time 0.2208 (0.0028)
+    Batch Time 13.3256 (0.1666)
+Accuracy 0.4479 0.4479
+    Precision 0.1985 0.8392
+    Recall 0.6595 0.4002
+    F1 0.3051 0.5420
+    Acc_avg 0.4479 Prec_avg 0.5188 Recall_avg 0.5299 F1_avg 0.4235
+    Loss 1.3173
+
+    [Tain]: 
+    Epoch 75
+    Data Time 7.4869 (0.0265)
+    Batch Time 143.1168 (0.5057)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5139 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0395 (0.0040)
+    Batch Time 1.7031 (0.1703)
+Accuracy 0.7925 0.7925
+    Precision 0.7771 0.8092
+    Recall 0.8165 0.7688
+    F1 0.7963 0.7885
+    Acc_avg 0.7925 Prec_avg 0.7932 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9152
+
+    [Test (Target Domain)]: 
+    Data Time 0.2180 (0.0027)
+    Batch Time 13.4022 (0.1675)
+Accuracy 0.4581 0.4581
+    Precision 0.1999 0.8400
+    Recall 0.6488 0.4151
+    F1 0.3056 0.5557
+    Acc_avg 0.4581 Prec_avg 0.5199 Recall_avg 0.5320 F1_avg 0.4306
+    Loss 1.2775
+
+    [Tain]: 
+    Epoch 76
+    Data Time 6.9263 (0.0245)
+    Batch Time 145.9643 (0.5158)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5107 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0663 (0.0066)
+    Batch Time 1.7198 (0.1720)
+Accuracy 0.7893 0.7893
+    Precision 0.7725 0.8079
+    Recall 0.8165 0.7625
+    F1 0.7938 0.7846
+    Acc_avg 0.7893 Prec_avg 0.7902 Recall_avg 0.7895 F1_avg 0.7892
+    Loss 0.9242
+
+    [Test (Target Domain)]: 
+    Data Time 0.2208 (0.0028)
+    Batch Time 13.3823 (0.1673)
+Accuracy 0.4482 0.4482
+    Precision 0.1978 0.8380
+    Recall 0.6552 0.4016
+    F1 0.3039 0.5430
+    Acc_avg 0.4482 Prec_avg 0.5179 Recall_avg 0.5284 F1_avg 0.4234
+    Loss 1.3145
+
+    [Tain]: 
+    Epoch 77
+    Data Time 7.2028 (0.0255)
+    Batch Time 143.7514 (0.5080)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5128 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0648 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0294 (0.0029)
+    Batch Time 1.6813 (0.1681)
+Accuracy 0.7830 0.7830
+    Precision 0.7730 0.7935
+    Recall 0.7975 0.7688
+    F1 0.7850 0.7810
+    Acc_avg 0.7830 Prec_avg 0.7833 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9285
+
+    [Test (Target Domain)]: 
+    Data Time 0.2240 (0.0028)
+    Batch Time 13.4556 (0.1682)
+Accuracy 0.4620 0.4620
+    Precision 0.1992 0.8383
+    Recall 0.6381 0.4224
+    F1 0.3036 0.5617
+    Acc_avg 0.4620 Prec_avg 0.5187 Recall_avg 0.5302 F1_avg 0.4327
+    Loss 1.2568
+
+    [Tain]: 
+    Epoch 78
+    Data Time 7.0647 (0.0250)
+    Batch Time 146.0494 (0.5161)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5015 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0655
+
+    [Test (Source Domain)]: 
+    Data Time 0.0303 (0.0030)
+    Batch Time 1.6781 (0.1678)
+Accuracy 0.7893 0.7893
+    Precision 0.7725 0.8079
+    Recall 0.8165 0.7625
+    F1 0.7938 0.7846
+    Acc_avg 0.7893 Prec_avg 0.7902 Recall_avg 0.7895 F1_avg 0.7892
+    Loss 0.9137
+
+    [Test (Target Domain)]: 
+    Data Time 0.2330 (0.0029)
+    Batch Time 13.8444 (0.1731)
+Accuracy 0.4530 0.4530
+    Precision 0.1993 0.8400
+    Recall 0.6552 0.4074
+    F1 0.3057 0.5487
+    Acc_avg 0.4530 Prec_avg 0.5197 Recall_avg 0.5313 F1_avg 0.4272
+    Loss 1.2988
+
+    [Tain]: 
+    Epoch 79
+    Data Time 7.0559 (0.0249)
+    Batch Time 142.9430 (0.5051)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5086 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0340 (0.0034)
+    Batch Time 1.7600 (0.1760)
+Accuracy 0.7830 0.7830
+    Precision 0.7633 0.8054
+    Recall 0.8165 0.7500
+    F1 0.7890 0.7767
+    Acc_avg 0.7830 Prec_avg 0.7843 Recall_avg 0.7832 F1_avg 0.7828
+    Loss 0.9118
+
+    [Test (Target Domain)]: 
+    Data Time 0.2229 (0.0028)
+    Batch Time 13.5415 (0.1693)
+Accuracy 0.4431 0.4431
+    Precision 0.1981 0.8393
+    Recall 0.6660 0.3930
+    F1 0.3054 0.5353
+    Acc_avg 0.4431 Prec_avg 0.5187 Recall_avg 0.5295 F1_avg 0.4203
+    Loss 1.3439
+
+    [Tain]: 
+    Epoch 80
+    Data Time 7.1750 (0.0254)
+    Batch Time 143.0101 (0.5053)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5151 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0006 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0318 (0.0032)
+    Batch Time 1.6622 (0.1662)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.9300
+
+    [Test (Target Domain)]: 
+    Data Time 0.2195 (0.0027)
+    Batch Time 13.5601 (0.1695)
+Accuracy 0.4400 0.4400
+    Precision 0.1990 0.8416
+    Recall 0.6767 0.3867
+    F1 0.3075 0.5299
+    Acc_avg 0.4400 Prec_avg 0.5203 Recall_avg 0.5317 F1_avg 0.4187
+    Loss 1.3414
+
+    [Tain]: 
+    Epoch 81
+    Data Time 7.0725 (0.0250)
+    Batch Time 143.8383 (0.5083)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5105 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0321 (0.0032)
+    Batch Time 1.7591 (0.1759)
+Accuracy 0.7862 0.7862
+    Precision 0.7711 0.8026
+    Recall 0.8101 0.7625
+    F1 0.7901 0.7821
+    Acc_avg 0.7862 Prec_avg 0.7869 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9241
+
+    [Test (Target Domain)]: 
+    Data Time 0.2222 (0.0028)
+    Batch Time 13.4712 (0.1684)
+Accuracy 0.4636 0.4636
+    Precision 0.2025 0.8435
+    Recall 0.6531 0.4209
+    F1 0.3092 0.5616
+    Acc_avg 0.4636 Prec_avg 0.5230 Recall_avg 0.5370 F1_avg 0.4354
+    Loss 1.2613
+
+    [Tain]: 
+    Epoch 82
+    Data Time 7.3944 (0.0261)
+    Batch Time 146.4232 (0.5174)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5126 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0301 (0.0030)
+    Batch Time 1.8579 (0.1858)
+Accuracy 0.7893 0.7893
+    Precision 0.7791 0.8000
+    Recall 0.8038 0.7750
+    F1 0.7913 0.7873
+    Acc_avg 0.7893 Prec_avg 0.7896 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9173
+
+    [Test (Target Domain)]: 
+    Data Time 0.2496 (0.0031)
+    Batch Time 14.2485 (0.1781)
+Accuracy 0.4927 0.4927
+    Precision 0.2043 0.8410
+    Recall 0.6081 0.4667
+    F1 0.3059 0.6003
+    Acc_avg 0.4927 Prec_avg 0.5227 Recall_avg 0.5374 F1_avg 0.4531
+    Loss 1.1859
+
+    [Tain]: 
+    Epoch 83
+    Data Time 7.3551 (0.0260)
+    Batch Time 143.7678 (0.5080)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 1.0000 0.9998
+    Recall 0.9998 1.0000
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5109 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0648 Global Cls Loss 0.0006 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0300 (0.0030)
+    Batch Time 1.7684 (0.1768)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.9102
+
+    [Test (Target Domain)]: 
+    Data Time 0.2160 (0.0027)
+    Batch Time 13.4355 (0.1679)
+Accuracy 0.4636 0.4636
+    Precision 0.1981 0.8363
+    Recall 0.6296 0.4262
+    F1 0.3014 0.5647
+    Acc_avg 0.4636 Prec_avg 0.5172 Recall_avg 0.5279 F1_avg 0.4330
+    Loss 1.2493
+
+    [Tain]: 
+    Epoch 84
+    Data Time 7.1132 (0.0251)
+    Batch Time 142.9601 (0.5052)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5121 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0006 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0295 (0.0030)
+    Batch Time 1.7414 (0.1741)
+Accuracy 0.7862 0.7862
+    Precision 0.7744 0.7987
+    Recall 0.8038 0.7688
+    F1 0.7888 0.7834
+    Acc_avg 0.7862 Prec_avg 0.7865 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9110
+
+    [Test (Target Domain)]: 
+    Data Time 0.2186 (0.0027)
+    Batch Time 13.3968 (0.1675)
+Accuracy 0.4813 0.4813
+    Precision 0.2014 0.8387
+    Recall 0.6146 0.4513
+    F1 0.3034 0.5868
+    Acc_avg 0.4813 Prec_avg 0.5201 Recall_avg 0.5329 F1_avg 0.4451
+    Loss 1.2023
+
+    [Tain]: 
+    Epoch 85
+    Data Time 7.2356 (0.0256)
+    Batch Time 143.8254 (0.5082)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5100 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0293 (0.0029)
+    Batch Time 1.7301 (0.1730)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.9018
+
+    [Test (Target Domain)]: 
+    Data Time 0.2169 (0.0027)
+    Batch Time 13.3290 (0.1666)
+Accuracy 0.4447 0.4447
+    Precision 0.1970 0.8372
+    Recall 0.6574 0.3968
+    F1 0.3032 0.5384
+    Acc_avg 0.4447 Prec_avg 0.5171 Recall_avg 0.5271 F1_avg 0.4208
+    Loss 1.3223
+
+    [Tain]: 
+    Epoch 86
+    Data Time 7.1726 (0.0253)
+    Batch Time 142.9666 (0.5052)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5071 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0303 (0.0030)
+    Batch Time 1.7437 (0.1744)
+Accuracy 0.7893 0.7893
+    Precision 0.7692 0.8121
+    Recall 0.8228 0.7562
+    F1 0.7951 0.7832
+    Acc_avg 0.7893 Prec_avg 0.7907 Recall_avg 0.7895 F1_avg 0.7891
+    Loss 0.9081
+
+    [Test (Target Domain)]: 
+    Data Time 0.2234 (0.0028)
+    Batch Time 13.5503 (0.1694)
+Accuracy 0.4565 0.4565
+    Precision 0.1982 0.8374
+    Recall 0.6424 0.4147
+    F1 0.3029 0.5547
+    Acc_avg 0.4565 Prec_avg 0.5178 Recall_avg 0.5285 F1_avg 0.4288
+    Loss 1.2813
+
+    [Tain]: 
+    Epoch 87
+    Data Time 6.8182 (0.0241)
+    Batch Time 143.9001 (0.5085)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5107 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0262 (0.0026)
+    Batch Time 1.6723 (0.1672)
+Accuracy 0.7893 0.7893
+    Precision 0.7692 0.8121
+    Recall 0.8228 0.7562
+    F1 0.7951 0.7832
+    Acc_avg 0.7893 Prec_avg 0.7907 Recall_avg 0.7895 F1_avg 0.7891
+    Loss 0.9105
+
+    [Test (Target Domain)]: 
+    Data Time 0.2230 (0.0028)
+    Batch Time 13.3029 (0.1663)
+Accuracy 0.4526 0.4526
+    Precision 0.1984 0.8385
+    Recall 0.6510 0.4079
+    F1 0.3042 0.5488
+    Acc_avg 0.4526 Prec_avg 0.5184 Recall_avg 0.5294 F1_avg 0.4265
+    Loss 1.2909
+
+    [Tain]: 
+    Epoch 88
+    Data Time 7.3150 (0.0258)
+    Batch Time 143.2163 (0.5061)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5127 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0322 (0.0032)
+    Batch Time 1.6943 (0.1694)
+Accuracy 0.7862 0.7862
+    Precision 0.7679 0.8067
+    Recall 0.8165 0.7562
+    F1 0.7914 0.7806
+    Acc_avg 0.7862 Prec_avg 0.7873 Recall_avg 0.7864 F1_avg 0.7860
+    Loss 0.8961
+
+    [Test (Target Domain)]: 
+    Data Time 0.2159 (0.0027)
+    Batch Time 13.2899 (0.1661)
+Accuracy 0.4341 0.4341
+    Precision 0.1941 0.8333
+    Recall 0.6595 0.3833
+    F1 0.2999 0.5251
+    Acc_avg 0.4341 Prec_avg 0.5137 Recall_avg 0.5214 F1_avg 0.4125
+    Loss 1.3477
+
+    [Tain]: 
+    Epoch 89
+    Data Time 6.9969 (0.0247)
+    Batch Time 143.5970 (0.5074)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5135 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0005 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0291 (0.0029)
+    Batch Time 1.7036 (0.1704)
+Accuracy 0.7862 0.7862
+    Precision 0.7744 0.7987
+    Recall 0.8038 0.7688
+    F1 0.7888 0.7834
+    Acc_avg 0.7862 Prec_avg 0.7865 Recall_avg 0.7863 F1_avg 0.7861
+    Loss 0.9055
+
+    [Test (Target Domain)]: 
+    Data Time 0.2197 (0.0027)
+    Batch Time 13.4872 (0.1686)
+Accuracy 0.4534 0.4534
+    Precision 0.1991 0.8394
+    Recall 0.6531 0.4084
+    F1 0.3052 0.5495
+    Acc_avg 0.4534 Prec_avg 0.5193 Recall_avg 0.5307 F1_avg 0.4273
+    Loss 1.2907
+
+    [Tain]: 
+    Epoch 90
+    Data Time 6.7314 (0.0238)
+    Batch Time 143.0043 (0.5053)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5055 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0651 Global Cls Loss 0.0004 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0287 (0.0029)
+    Batch Time 1.7122 (0.1712)
+Accuracy 0.7799 0.7799
+    Precision 0.7651 0.7961
+    Recall 0.8038 0.7562
+    F1 0.7840 0.7756
+    Acc_avg 0.7799 Prec_avg 0.7806 Recall_avg 0.7800 F1_avg 0.7798
+    Loss 0.8962
+
+    [Test (Target Domain)]: 
+    Data Time 0.2258 (0.0028)
+    Batch Time 13.5404 (0.1693)
+Accuracy 0.4329 0.4329
+    Precision 0.1952 0.8356
+    Recall 0.6681 0.3799
+    F1 0.3022 0.5224
+    Acc_avg 0.4329 Prec_avg 0.5154 Recall_avg 0.5240 F1_avg 0.4123
+    Loss 1.3515
+
+    [Tain]: 
+    Epoch 91
+    Data Time 6.9984 (0.0247)
+    Batch Time 144.8312 (0.5118)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5163 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0351 (0.0035)
+    Batch Time 1.6570 (0.1657)
+Accuracy 0.7830 0.7830
+    Precision 0.7764 0.7898
+    Recall 0.7911 0.7750
+    F1 0.7837 0.7823
+    Acc_avg 0.7830 Prec_avg 0.7831 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9141
+
+    [Test (Target Domain)]: 
+    Data Time 0.2228 (0.0028)
+    Batch Time 13.3989 (0.1675)
+Accuracy 0.4809 0.4809
+    Precision 0.1974 0.8332
+    Recall 0.5953 0.4552
+    F1 0.2965 0.5887
+    Acc_avg 0.4809 Prec_avg 0.5153 Recall_avg 0.5252 F1_avg 0.4426
+    Loss 1.2009
+
+    [Tain]: 
+    Epoch 92
+    Data Time 6.7693 (0.0239)
+    Batch Time 147.0620 (0.5197)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5066 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0656
+
+    [Test (Source Domain)]: 
+    Data Time 0.0312 (0.0031)
+    Batch Time 1.7366 (0.1737)
+Accuracy 0.7830 0.7830
+    Precision 0.7697 0.7974
+    Recall 0.8038 0.7625
+    F1 0.7864 0.7796
+    Acc_avg 0.7830 Prec_avg 0.7835 Recall_avg 0.7831 F1_avg 0.7830
+    Loss 0.9109
+
+    [Test (Target Domain)]: 
+    Data Time 0.2204 (0.0028)
+    Batch Time 13.4373 (0.1680)
+Accuracy 0.4581 0.4581
+    Precision 0.1995 0.8393
+    Recall 0.6467 0.4156
+    F1 0.3049 0.5559
+    Acc_avg 0.4581 Prec_avg 0.5194 Recall_avg 0.5312 F1_avg 0.4304
+    Loss 1.2637
+
+    [Tain]: 
+    Epoch 93
+    Data Time 6.6145 (0.0234)
+    Batch Time 146.5976 (0.5180)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5103 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0651 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0314 (0.0031)
+    Batch Time 1.6844 (0.1684)
+Accuracy 0.7893 0.7893
+    Precision 0.7758 0.8039
+    Recall 0.8101 0.7688
+    F1 0.7926 0.7859
+    Acc_avg 0.7893 Prec_avg 0.7898 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9060
+
+    [Test (Target Domain)]: 
+    Data Time 0.2234 (0.0028)
+    Batch Time 13.2162 (0.1652)
+Accuracy 0.4534 0.4534
+    Precision 0.2003 0.8415
+    Recall 0.6595 0.4069
+    F1 0.3072 0.5486
+    Acc_avg 0.4534 Prec_avg 0.5209 Recall_avg 0.5332 F1_avg 0.4279
+    Loss 1.2815
+
+    [Tain]: 
+    Epoch 94
+    Data Time 6.2722 (0.0222)
+    Batch Time 146.0411 (0.5160)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5110 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0287 (0.0029)
+    Batch Time 2.0205 (0.2020)
+Accuracy 0.7862 0.7862
+    Precision 0.7812 0.7911
+    Recall 0.7911 0.7812
+    F1 0.7862 0.7862
+    Acc_avg 0.7862 Prec_avg 0.7862 Recall_avg 0.7862 F1_avg 0.7862
+    Loss 0.9109
+
+    [Test (Target Domain)]: 
+    Data Time 0.2213 (0.0028)
+    Batch Time 14.3161 (0.1790)
+Accuracy 0.4908 0.4908
+    Precision 0.2014 0.8374
+    Recall 0.5974 0.4667
+    F1 0.3013 0.5994
+    Acc_avg 0.4908 Prec_avg 0.5194 Recall_avg 0.5321 F1_avg 0.4503
+    Loss 1.1700
+
+    [Tain]: 
+    Epoch 95
+    Data Time 6.6251 (0.0234)
+    Batch Time 141.7479 (0.5009)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5112 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0290 (0.0029)
+    Batch Time 1.6486 (0.1649)
+Accuracy 0.7956 0.7956
+    Precision 0.7925 0.7987
+    Recall 0.7975 0.7937
+    F1 0.7950 0.7962
+    Acc_avg 0.7956 Prec_avg 0.7956 Recall_avg 0.7956 F1_avg 0.7956
+    Loss 0.9099
+
+    [Test (Target Domain)]: 
+    Data Time 0.2164 (0.0027)
+    Batch Time 13.0702 (0.1634)
+Accuracy 0.4896 0.4896
+    Precision 0.2006 0.8364
+    Recall 0.5953 0.4658
+    F1 0.3001 0.5983
+    Acc_avg 0.4896 Prec_avg 0.5185 Recall_avg 0.5305 F1_avg 0.4492
+    Loss 1.1668
+
+    [Tain]: 
+    Epoch 96
+    Data Time 6.4447 (0.0228)
+    Batch Time 151.8083 (0.5364)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5114 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0317 (0.0032)
+    Batch Time 1.7694 (0.1769)
+Accuracy 0.7925 0.7925
+    Precision 0.7738 0.8133
+    Recall 0.8228 0.7625
+    F1 0.7975 0.7871
+    Acc_avg 0.7925 Prec_avg 0.7936 Recall_avg 0.7926 F1_avg 0.7923
+    Loss 0.9140
+
+    [Test (Target Domain)]: 
+    Data Time 0.2179 (0.0027)
+    Batch Time 13.4105 (0.1676)
+Accuracy 0.4549 0.4549
+    Precision 0.1984 0.8381
+    Recall 0.6467 0.4118
+    F1 0.3037 0.5522
+    Acc_avg 0.4549 Prec_avg 0.5182 Recall_avg 0.5292 F1_avg 0.4279
+    Loss 1.2799
+
+    [Tain]: 
+    Epoch 97
+    Data Time 6.2101 (0.0219)
+    Batch Time 143.2606 (0.5062)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5105 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0650 Global Cls Loss 0.0006 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0288 (0.0029)
+    Batch Time 1.6657 (0.1666)
+Accuracy 0.7893 0.7893
+    Precision 0.7758 0.8039
+    Recall 0.8101 0.7688
+    F1 0.7926 0.7859
+    Acc_avg 0.7893 Prec_avg 0.7898 Recall_avg 0.7894 F1_avg 0.7893
+    Loss 0.9062
+
+    [Test (Target Domain)]: 
+    Data Time 0.2246 (0.0028)
+    Batch Time 13.2077 (0.1651)
+Accuracy 0.4675 0.4675
+    Precision 0.1990 0.8372
+    Recall 0.6274 0.4315
+    F1 0.3022 0.5695
+    Acc_avg 0.4675 Prec_avg 0.5181 Recall_avg 0.5295 F1_avg 0.4359
+    Loss 1.2301
+
+    [Tain]: 
+    Epoch 98
+    Data Time 6.5575 (0.0232)
+    Batch Time 147.0451 (0.5196)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5122 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0651 Global Cls Loss 0.0005 Local Cls Loss 0.0001 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0285 (0.0029)
+    Batch Time 1.7162 (0.1716)
+Accuracy 0.7987 0.7987
+    Precision 0.7831 0.8158
+    Recall 0.8228 0.7750
+    F1 0.8025 0.7949
+    Acc_avg 0.7987 Prec_avg 0.7995 Recall_avg 0.7989 F1_avg 0.7987
+    Loss 0.9079
+
+    [Test (Target Domain)]: 
+    Data Time 0.2227 (0.0028)
+    Batch Time 14.9356 (0.1867)
+Accuracy 0.4762 0.4762
+    Precision 0.2000 0.8374
+    Recall 0.6167 0.4446
+    F1 0.3020 0.5808
+    Acc_avg 0.4762 Prec_avg 0.5187 Recall_avg 0.5306 F1_avg 0.4414
+    Loss 1.2153
+
+    [Tain]: 
+    Epoch 99
+    Data Time 6.1665 (0.0218)
+    Batch Time 144.9991 (0.5124)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 1.0000 1.0000
+    Precision 1.0000 1.0000
+    Recall 1.0000 1.0000
+    F1 1.0000 1.0000
+    AdversarialNet Acc 0.5093 Acc_avg 1.0000 Prec_avg 1.0000 Recall_avg 1.0000 F1_avg 1.0000
+    Total Loss -0.0649 Global Cls Loss 0.0007 Local Cls Loss 0.0002 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0338 (0.0034)
+    Batch Time 2.0254 (0.2025)
+Accuracy 0.7925 0.7925
+    Precision 0.7805 0.8052
+    Recall 0.8101 0.7750
+    F1 0.7950 0.7898
+    Acc_avg 0.7925 Prec_avg 0.7928 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.8991
+
+    [Test (Target Domain)]: 
+    Data Time 0.2211 (0.0028)
+    Batch Time 15.6148 (0.1952)
+Accuracy 0.4671 0.4671
+    Precision 0.1993 0.8377
+    Recall 0.6296 0.4306
+    F1 0.3028 0.5688
+    Acc_avg 0.4671 Prec_avg 0.5185 Recall_avg 0.5301 F1_avg 0.4358
+    Loss 1.2383
+
+    [Tain]: 
+    Epoch 100
+    Data Time 6.5265 (0.0231)
+    Batch Time 142.3463 (0.5030)
+    Learning Rate 1e-05 Learning Rate(AdversarialNet) 1e-05
+Accuracy 0.9999 0.9999
+    Precision 0.9998 1.0000
+    Recall 1.0000 0.9998
+    F1 0.9999 0.9999
+    AdversarialNet Acc 0.5084 Acc_avg 0.9999 Prec_avg 0.9999 Recall_avg 0.9999 F1_avg 0.9999
+    Total Loss -0.0648 Global Cls Loss 0.0006 Local Cls Loss 0.0003 AFN Loss 0.0000 DAN Loss -0.0657
+
+    [Test (Source Domain)]: 
+    Data Time 0.0314 (0.0031)
+    Batch Time 1.7133 (0.1713)
+Accuracy 0.7925 0.7925
+    Precision 0.7805 0.8052
+    Recall 0.8101 0.7750
+    F1 0.7950 0.7898
+    Acc_avg 0.7925 Prec_avg 0.7928 Recall_avg 0.7926 F1_avg 0.7924
+    Loss 0.9041
+
+    [Test (Target Domain)]: 
+    Data Time 0.2230 (0.0028)
+    Batch Time 13.2984 (0.1662)
+Accuracy 0.4656 0.4656
+    Precision 0.2000 0.8390
+    Recall 0.6360 0.4272
+    F1 0.3043 0.5661
+    Acc_avg 0.4656 Prec_avg 0.5195 Recall_avg 0.5316 F1_avg 0.4352
+    Loss 1.2350
