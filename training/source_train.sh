@@ -1,5 +1,5 @@
 Log_Name='raf2aisin_res50'
-Resume_Model=None
+Resume_Model='./ir50_ms1m_112_Global_local.pkl'
 OutputPath='.'
 GPU_ID=0    
 Backbone='ResNet50'

@@ -1,6 +1,6 @@
 Log_Name='raf2aisin_res50'
 ##Resume_Model='ResNet50_CropNet_withoutAFN_trainOnSourceDomain_RAFtoCK+.pkl'
-Resume_Model=None
+Resume_Model='./ir50_ms1m_112_onlyGlobal.pkl'
 OutputPath='.'
 GPU_ID=1
 Backbone='ResNet50'
@@ -27,7 +27,7 @@ showFeature='False'
 class_num=2
 useIntraGCN='False'
 useInterGCN='False'
-useLocalFeature='True'
+useLocalFeature='False'
 useRandomMatrix='False'
 useAllOneMatrix='False'
 useCov='False'

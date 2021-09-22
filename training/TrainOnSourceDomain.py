@@ -364,7 +364,7 @@ def main():
     print('================================================')
 
     # Init Mean
-    if args.local_feat and not args.isTest: 
+    if args.local_feat and args.intra_gcn and args.inter_gcn and not args.isTest:         
         if args.use_cov:
             print('Init Mean and Cov...')
             Initialize_Mean_Cov(args, model, True)
